@@ -10,6 +10,7 @@ First, install the Stepwise for Unity package, located in this repository at src
 
 To use Stepwise in your Unity project, at a minimum you'll need to add the Conductor component to a game object in your scene. The Conductor component includes a slot for a TextAsset—if you drop a plain text file or Stepwise XML file into that slot, the Conductor will load it automatically when the scene starts. The HelloWorld scene includes an example of this usage.
 
+== HelloWorld Scene ==
 
 This very simple implementation of Stepwise includes a Stepwise game object with a Conductor component that is pre-filled with a simple Stepwise XML "Hello World" script. The script will be loaded automatically when the scene starts. You can also leave the Data File slot empty and load a script from code, in either plain text or Stepwise XML formats, using the Conductor object's Load methods.
 
