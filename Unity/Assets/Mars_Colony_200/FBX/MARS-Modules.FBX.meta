@@ -1,0 +1,351 @@
+fileFormatVersion: 2
+guid: 29c5c32fcc564294e82491884c5e7b6e
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Modul-02
+    100004: Modul-02_00
+    100006: Modul-02_Lod-01
+    100008: Modul-02_Lod-02
+    100010: Modul-02_Lod-03
+    100012: Modul-03
+    100014: Modul-03_00
+    100016: Modul-04_Lod-01
+    100018: Modul-04_Lod-02
+    100020: Modul-04_Lod-03
+    100022: Modul-crossing
+    100024: Modul-crossing-lod-01
+    100026: Modul-crossing-lod-02
+    100028: Modul-crossing-lod-03
+    100030: modul-home-00
+    100032: modul-home-lod-01
+    100034: modul-home-lod-02
+    100036: modul-home-lod-03
+    100038: Module-01
+    100040: Module-01_00
+    100042: Module-01_Lod-01
+    100044: Module-01_Lod-02
+    100046: Module-05
+    100048: Module-05_00
+    100050: Module-05_Lod-01
+    100052: Module-05_Lod-02
+    100054: Module-05_Lod-03
+    100056: Module-energo
+    100058: Module-energo_00
+    100060: Module-energo_Lod-01
+    100062: Module-energo_Lod-02
+    100064: Module-energo_Lod-03
+    100066: Module-home
+    100068: Module_Syn-light
+    100070: Module_Syn-light 1
+    100072: Module_Syn-light_Lod-01
+    100074: Module_Syn-light_Lod-02
+    100076: OXY
+    100078: oxy
+    100080: oxy_lod-01
+    100082: oxy_lod-02
+    100084: stairs
+    100086: stairs_00
+    100088: stairs_Lod-01
+    100090: Support
+    100092: support
+    100094: support_Lod-1
+    100096: "\u044F"
+    400000: //RootNode
+    400002: Modul-02
+    400004: Modul-02_00
+    400006: Modul-02_Lod-01
+    400008: Modul-02_Lod-02
+    400010: Modul-02_Lod-03
+    400012: Modul-03
+    400014: Modul-03_00
+    400016: Modul-04_Lod-01
+    400018: Modul-04_Lod-02
+    400020: Modul-04_Lod-03
+    400022: Modul-crossing
+    400024: Modul-crossing-lod-01
+    400026: Modul-crossing-lod-02
+    400028: Modul-crossing-lod-03
+    400030: modul-home-00
+    400032: modul-home-lod-01
+    400034: modul-home-lod-02
+    400036: modul-home-lod-03
+    400038: Module-01
+    400040: Module-01_00
+    400042: Module-01_Lod-01
+    400044: Module-01_Lod-02
+    400046: Module-05
+    400048: Module-05_00
+    400050: Module-05_Lod-01
+    400052: Module-05_Lod-02
+    400054: Module-05_Lod-03
+    400056: Module-energo
+    400058: Module-energo_00
+    400060: Module-energo_Lod-01
+    400062: Module-energo_Lod-02
+    400064: Module-energo_Lod-03
+    400066: Module-home
+    400068: Module_Syn-light
+    400070: Module_Syn-light 1
+    400072: Module_Syn-light_Lod-01
+    400074: Module_Syn-light_Lod-02
+    400076: OXY
+    400078: oxy
+    400080: oxy_lod-01
+    400082: oxy_lod-02
+    400084: stairs
+    400086: stairs_00
+    400088: stairs_Lod-01
+    400090: Support
+    400092: support
+    400094: support_Lod-1
+    400096: "\u044F"
+    2300000: Modul-02_00
+    2300002: Modul-02_Lod-01
+    2300004: Modul-02_Lod-02
+    2300006: Modul-02_Lod-03
+    2300008: Modul-03_00
+    2300010: Modul-04_Lod-01
+    2300012: Modul-04_Lod-02
+    2300014: Modul-04_Lod-03
+    2300016: Modul-crossing-lod-01
+    2300018: Modul-crossing-lod-02
+    2300020: Modul-crossing-lod-03
+    2300022: modul-home-00
+    2300024: modul-home-lod-01
+    2300026: modul-home-lod-02
+    2300028: modul-home-lod-03
+    2300030: Module-01_00
+    2300032: Module-01_Lod-01
+    2300034: Module-01_Lod-02
+    2300036: Module-05_00
+    2300038: Module-05_Lod-01
+    2300040: Module-05_Lod-02
+    2300042: Module-05_Lod-03
+    2300044: Module-energo_00
+    2300046: Module-energo_Lod-01
+    2300048: Module-energo_Lod-02
+    2300050: Module-energo_Lod-03
+    2300052: Module_Syn-light 1
+    2300054: Module_Syn-light_Lod-01
+    2300056: Module_Syn-light_Lod-02
+    2300058: oxy
+    2300060: oxy_lod-01
+    2300062: oxy_lod-02
+    2300064: stairs_00
+    2300066: stairs_Lod-01
+    2300068: support
+    2300070: support_Lod-1
+    2300072: "\u044F"
+    3300000: Modul-02_00
+    3300002: Modul-02_Lod-01
+    3300004: Modul-02_Lod-02
+    3300006: Modul-02_Lod-03
+    3300008: Modul-03_00
+    3300010: Modul-04_Lod-01
+    3300012: Modul-04_Lod-02
+    3300014: Modul-04_Lod-03
+    3300016: Modul-crossing-lod-01
+    3300018: Modul-crossing-lod-02
+    3300020: Modul-crossing-lod-03
+    3300022: modul-home-00
+    3300024: modul-home-lod-01
+    3300026: modul-home-lod-02
+    3300028: modul-home-lod-03
+    3300030: Module-01_00
+    3300032: Module-01_Lod-01
+    3300034: Module-01_Lod-02
+    3300036: Module-05_00
+    3300038: Module-05_Lod-01
+    3300040: Module-05_Lod-02
+    3300042: Module-05_Lod-03
+    3300044: Module-energo_00
+    3300046: Module-energo_Lod-01
+    3300048: Module-energo_Lod-02
+    3300050: Module-energo_Lod-03
+    3300052: Module_Syn-light 1
+    3300054: Module_Syn-light_Lod-01
+    3300056: Module_Syn-light_Lod-02
+    3300058: oxy
+    3300060: oxy_lod-01
+    3300062: oxy_lod-02
+    3300064: stairs_00
+    3300066: stairs_Lod-01
+    3300068: support
+    3300070: support_Lod-1
+    3300072: "\u044F"
+    4300000: modul-home-lod-03
+    4300002: modul-home-lod-01
+    4300004: modul-home-lod-02
+    4300006: modul-home-00
+    4300008: Modul-crossing-lod-03
+    4300010: Modul-crossing-lod-01
+    4300012: "\u044F"
+    4300014: Modul-crossing-lod-02
+    4300016: oxy
+    4300018: oxy_lod-01
+    4300020: oxy_lod-02
+    4300022: support_Lod-1
+    4300024: support
+    4300026: stairs_00
+    4300028: stairs_Lod-01
+    4300030: Module-energo_Lod-03
+    4300032: Module-energo_00
+    4300034: Module-energo_Lod-01
+    4300036: Module-energo_Lod-02
+    4300038: Module_Syn-light
+    4300040: Module_Syn-light_Lod-01
+    4300042: Module_Syn-light_Lod-02
+    4300044: Modul-04_Lod-01
+    4300046: Modul-03_00
+    4300048: Modul-04_Lod-02
+    4300050: Modul-04_Lod-03
+    4300052: Modul-02_Lod-03
+    4300054: Modul-02_Lod-01
+    4300056: Modul-02_Lod-02
+    4300058: Modul-02_00
+    4300060: Module-05_00
+    4300062: Module-05_Lod-02
+    4300064: Module-05_Lod-03
+    4300066: Module-05_Lod-01
+    4300068: Module-01_Lod-01
+    4300070: Module-01_Lod-02
+    4300072: Module-01_00
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Oxygen
+    second: {fileID: 2100000, guid: cb7382c8a8460804eb15818b197c927e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _photometertitanium
+    second: {fileID: 2100000, guid: ce80f5ab9e0034697ba0a6bdf2c4196b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: door
+    second: {fileID: 2100000, guid: b63bd60f36ae64145852bf0405f026e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lestnica
+    second: {fileID: 2100000, guid: b9374f4152e90e44186f5928da11f88e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: modul-3
+    second: {fileID: 2100000, guid: 4d18bc4af62993f40a0f729e954745ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: modul-5
+    second: {fileID: 2100000, guid: 5c202bad4a76d2a4aa6c0d1e7cb0ea87, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: modul-9
+    second: {fileID: 2100000, guid: db8829a7e0ad55344ace8c975995a22a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: modul-home
+    second: {fileID: 2100000, guid: de23863d9c9f1f44585017e7ee102677, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: module-4
+    second: {fileID: 2100000, guid: bd6186268c03ebe4ab23c3028b9d9b18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: motel-00
+    second: {fileID: 2100000, guid: 31c2f1a8748cba94eb37fd829c19165d, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
