@@ -31,7 +31,7 @@ public class RawInteraction : MonoBehaviour {
 
     public GameObject cube;
     public bool hovering;
-    public GameObject stepwise;
+    public GameObject stepwise_agroPod;
 
     public GameObject agroPodPanel;
     public GameObject astronautPanel;
@@ -54,15 +54,18 @@ public class RawInteraction : MonoBehaviour {
             //activate the stepwise panel for selected object
             if(selectedTag == "agroPod")
             {
-                //agroPodPanel.SetActive(true);
+                stepwise_agroPod.SetActive(true);
+                agroPodPanel.SetActive(true);
                 //child the panel to the right controller
+                agroPodPanel.transform.SetParent(rightHand.transform);
+
             } else if (selectedTag == "astronaut")
             {
                 //cube.SetActive(true);
                 //activate the astronaut stepwise panel
-                stepwise.SetActive(true);
-                astronautPanel.SetActive(true);
-                astronautPanel.transform.SetParent(rightHand.transform);
+                //stepwise.SetActive(true);
+                //astronautPanel.SetActive(true);
+                //astronautPanel.transform.SetParent(rightHand.transform);
             } else if(selectedTag == "controlPod")
             {
 
