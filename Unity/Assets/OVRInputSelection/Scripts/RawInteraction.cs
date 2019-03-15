@@ -29,6 +29,48 @@ public class RawInteraction : MonoBehaviour {
     public Material backACtive;
     public UnityEngine.UI.Text outText;
 
+    public GameObject cube;
+    public bool hovering;
+    public GameObject stepwise;
+
+    public GameObject agroPodPanel;
+    public GameObject astronautPanel;
+    public GameObject controlCenterPanel;
+    public string selectedTag;
+
+    public GameObject rightHand;
+
+    private void Start()
+    {
+        hovering = false;
+    }
+
+    public void Update()
+    {
+        //if trigger pressed && hovering == true
+        if(OVRInput.Get(OVRInput.RawButton.RIndexTrigger) && hovering == true)
+        {
+            Debug.Log("right trigger pressed");
+            //activate the stepwise panel for selected object
+            if(selectedTag == "agroPod")
+            {
+                //agroPodPanel.SetActive(true);
+                //child the panel to the right controller
+            } else if (selectedTag == "astronaut")
+            {
+                //cube.SetActive(true);
+                //activate the astronaut stepwise panel
+                stepwise.SetActive(true);
+                astronautPanel.SetActive(true);
+                astronautPanel.transform.SetParent(rightHand.transform);
+            } else if(selectedTag == "controlPod")
+            {
+
+            }
+        } 
+
+    }
+
     public void OnHoverEnter(Transform t) {
         if (t.gameObject.name == "BackButton") {
             t.gameObject.GetComponent<Renderer>().material = backACtive;
@@ -36,6 +78,13 @@ public class RawInteraction : MonoBehaviour {
         else {
             oldHoverMat = t.gameObject.GetComponent<Renderer>().material;
             t.gameObject.GetComponent<Renderer>().material = yellowMat;
+            
+            //set selectedTag to whatever the tag of selected GameObject is
+            selectedTag = t.gameObject.tag;
+            Debug.Log("selected tag is: " + selectedTag);
+
+            //set hovering bool = true;
+            hovering = true;
         }
         if (outText != null) {
             outText.text = "<b>Last Interaction:</b>\nHover Enter:" + t.gameObject.name;
@@ -48,6 +97,8 @@ public class RawInteraction : MonoBehaviour {
         }
         else {
             t.gameObject.GetComponent<Renderer>().material = oldHoverMat;
+            //set hovering bool = false;
+            hovering = false;
         }
         if (outText != null) {
             outText.text = "<b>Last Interaction:</b>\nHover Exit:" + t.gameObject.name;
