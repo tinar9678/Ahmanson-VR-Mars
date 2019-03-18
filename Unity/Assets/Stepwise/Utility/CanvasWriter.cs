@@ -133,6 +133,8 @@ public class CanvasWriter : MonoBehaviour
         				case "m4a":
         					break;
         				case "mp4":
+                        case "mov":
+                            panel.SetVideo(step.content);
         					break;
         				default:
         					panel.SetText (step.content);
@@ -210,6 +212,15 @@ public class CanvasWriter : MonoBehaviour
                     break;
                 case "setcamera":
                     panel.SetCamera(step.content);
+                    break;
+                case "pause":
+                    panel.Pause();
+                    break;
+                case "play":
+                    panel.Play();
+                    break;
+                case "setloop":
+                    panel.SetLoop(step.content == "true" ? true : false);
                     break;
             }
 		}
@@ -442,7 +453,7 @@ public class CanvasWriter : MonoBehaviour
 		int n = _panels.Count;
 		for (int i = 0; i < n; i++) {
 			int row = (int)Mathf.Floor ((float)i / grid.x);
-			int col = (int)((float)i % grid.y);
+			int col = (int)((float)i % grid.x);
 			SetPanelLayout (_panels [i], new Rect (col, row, 1, 1));
 		}
 	}
@@ -478,9 +489,6 @@ public class CanvasWriter : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		if (_scoreIsPrepared && EventSystem.current.currentSelectedGameObject == null && Input.anyKeyDown) {
-			conductor.NextStep ();
-		}
 		if (_rectTransform != null) {
 			unitSize.x = _rectTransform.rect.width / grid.x;
 			unitSize.y = _rectTransform.rect.height / grid.y;
