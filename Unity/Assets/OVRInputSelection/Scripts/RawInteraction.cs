@@ -21,10 +21,17 @@ limitations under the License.
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Opertoon.Stepwise;
+using UnityEngine.UI;
+using System.Collections;
 
-public class RawInteraction : MonoBehaviour {
+public class RawInteraction : MonoBehaviour
+{
     protected Material oldHoverMat;
     public Material yellowMat;
+    protected Material oldHoverMatOuter;
+    protected Material oldHoverMatInner;
+    public Material outlineMaterial;
     public Material backIdle;
     public Material backACtive;
     public UnityEngine.UI.Text outText;
@@ -38,83 +45,174 @@ public class RawInteraction : MonoBehaviour {
     public GameObject controlCenterPanel;
     public string selectedTag;
 
-    public GameObject rightHand;
+    private Conductor _conductor;
+    private bool panelActive;
 
-    private void Start()
+    public GameObject rightHand;
+    //private bool triggerPressed;
+    bool bDownRight;
+
+    public Camera auxCamera;
+    private float speed;
+    private float x;
+    private float y;
+
+    void Start()
     {
+       
+
+        oldHoverMatOuter = GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material;
+        oldHoverMatInner = GameObject.Find("Agro_propilen002").GetComponent<Renderer>().material;
+
+        _conductor = stepwise_agroPod.GetComponent<Conductor>();
+        bDownRight = OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
+        panelActive = false;
         hovering = false;
+        speed = -10f;
+        x = 17;
+        y = 0;
+
+        _conductor.OnScorePrepared += HandleScorePrepared;
+
+    }
+
+    private IEnumerator AutoStart()
+    {
+        yield return new WaitForSeconds(.5f);
+        if (_conductor != null)
+        {
+            _conductor.NextStep();
+        }
     }
 
     public void Update()
     {
-        //if trigger pressed && hovering == true
-        if(OVRInput.Get(OVRInput.RawButton.RIndexTrigger) && hovering == true)
+        y += speed * Time.deltaTime;
+       //auxCamera.transform.Rotate(0, speed * Time.deltaTime, 0);
+       auxCamera.transform.rotation = Quaternion.Euler(x, y, 0);
+
+
+    }
+
+    public void OnHoverEnter(Transform t)
+    {
+        if (t.gameObject.name == "BackButton")
         {
-            Debug.Log("right trigger pressed");
-            //activate the stepwise panel for selected object
-            if(selectedTag == "agroPod")
+            t.gameObject.GetComponent<Renderer>().material = backACtive;
+        }
+        else
+        {
+            hovering = true;
+            //set selectedTag to whatever the tag of selected GameObject is
+            selectedTag = t.gameObject.tag;
+            Debug.Log("selected tag is: " + selectedTag);
+
+            //oldHoverMat = t.gameObject.GetComponent<Renderer>().material;
+            //t.gameObject.GetComponent<Renderer>().material = yellowMat;
+            if(t.gameObject.tag == "agroPod")
             {
+                
+                GameObject.Find("Agro_propilen002").GetComponent<Renderer>().material = outlineMaterial;
+                GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material = outlineMaterial;
+            }
+            
+
+            //set hovering bool = true;
+            
+        }
+        if (outText != null)
+        {
+            outText.text = "<b>Last Interaction:</b>\nHover Enter:" + t.gameObject.name;
+        }
+    }
+
+    public void OnHoverExit(Transform t)
+    {
+        if (t.gameObject.name == "BackButton")
+        {
+            t.gameObject.GetComponent<Renderer>().material = backIdle;
+        }
+        else
+        {
+
+            //t.gameObject.GetComponent<Renderer>().material = oldHoverMat;
+            GameObject.Find("Agro_propilen002").GetComponent<Renderer>().material = oldHoverMatInner;
+            GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material = oldHoverMatOuter;
+
+            //set hovering bool = false;
+            hovering = false;
+        }
+        if (outText != null)
+        {
+            outText.text = "<b>Last Interaction:</b>\nHover Exit:" + t.gameObject.name;
+        }
+    }
+
+    public void NextStep()
+    {
+        Debug.Log("next step called");
+        _conductor.NextStep();
+     
+    }
+
+    private void HandleScorePrepared(Score score)
+    {
+        Debug.Log("score prepared");
+        StartCoroutine(AutoStart());
+    }
+
+    public void OnSelected(Transform t)
+    {
+
+        Debug.Log("right trigger pressed");
+        /*
+        if (panelActive)
+        {
+            _conductor.NextStep();
+        }
+        */
+        //if hovering == true
+       
+
+        if (hovering == true)
+        {
+            //activate the stepwise panel for selected object
+            if (selectedTag == "agroPod")
+            {
+                panelActive = true;
                 stepwise_agroPod.SetActive(true);
                 agroPodPanel.SetActive(true);
-                //child the panel to the right controller
-                agroPodPanel.transform.SetParent(rightHand.transform);
 
-            } else if (selectedTag == "astronaut")
+                
+                //child the panel to the right controller
+                //agroPodPanel.transform.SetParent(rightHand.transform);
+
+            }
+            else if (selectedTag == "astronaut")
             {
+                panelActive = true;
                 //cube.SetActive(true);
                 //activate the astronaut stepwise panel
                 //stepwise.SetActive(true);
                 //astronautPanel.SetActive(true);
                 //astronautPanel.transform.SetParent(rightHand.transform);
-            } else if(selectedTag == "controlPod")
-            {
-
             }
-        } 
+            else if (selectedTag == "controlPod")
+            {
+                panelActive = true;
 
-    }
+            } 
+  
 
-    public void OnHoverEnter(Transform t) {
-        if (t.gameObject.name == "BackButton") {
-            t.gameObject.GetComponent<Renderer>().material = backACtive;
-        }
-        else {
-            oldHoverMat = t.gameObject.GetComponent<Renderer>().material;
-            t.gameObject.GetComponent<Renderer>().material = yellowMat;
-            
-            //set selectedTag to whatever the tag of selected GameObject is
-            selectedTag = t.gameObject.tag;
-            Debug.Log("selected tag is: " + selectedTag);
-
-            //set hovering bool = true;
-            hovering = true;
-        }
-        if (outText != null) {
-            outText.text = "<b>Last Interaction:</b>\nHover Enter:" + t.gameObject.name;
-        }
-    }
-
-    public void OnHoverExit(Transform t) {
-        if (t.gameObject.name == "BackButton") {
-            t.gameObject.GetComponent<Renderer>().material = backIdle;
-        }
-        else {
-            t.gameObject.GetComponent<Renderer>().material = oldHoverMat;
-            //set hovering bool = false;
-            hovering = false;
-        }
-        if (outText != null) {
-            outText.text = "<b>Last Interaction:</b>\nHover Exit:" + t.gameObject.name;
-        }
-    }
-
-    public void OnSelected(Transform t) {
-        if (t.gameObject.name == "BackButton") {
-            SceneManager.LoadScene("main", LoadSceneMode.Single);
-        }
-        Debug.Log("Clicked on " + t.gameObject.name);
-        if (outText != null) {
-            outText.text = "<b>Last Interaction:</b>\nClicked On:" + t.gameObject.name;
+            if (t.gameObject.name == "BackButton")
+            {
+                SceneManager.LoadScene("main", LoadSceneMode.Single);
+            }
+            Debug.Log("Clicked on " + t.gameObject.name);
+            if (outText != null)
+            {
+                outText.text = "<b>Last Interaction:</b>\nClicked On:" + t.gameObject.name;
+            }
         }
     }
 }

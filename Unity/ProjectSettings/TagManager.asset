@@ -6,6 +6,7 @@ TagManager:
   tags:
   - astronaut
   - agroPod
+  - agroPodPanel
   layers:
   - Default
   - TransparentFX
