@@ -24,9 +24,11 @@ public class CanvasPanel : MonoBehaviour
     private Camera _camera;
     private Vector3 _cameraBasePosition;
     private Vector3 _mainCameraBasePosition;
+    private float _layoutTransitionDuration = .5f;
+    private float _imageTransitionDuration = .5f;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         _margins = new float[4];
         _textMargins = new float [4];
@@ -100,7 +102,7 @@ public class CanvasPanel : MonoBehaviour
         Vector2 anchorMinEnd = new Vector2(layout.xMin, layout.yMin);
         Vector2 anchorMaxEnd = new Vector2(layout.xMax, layout.yMax);
 		_rectTransform.sizeDelta = Vector2.zero;
-        LeanTween.value(gameObject, 0, 1, .5f).setEase(LeanTweenType.easeInOutSine).setOnUpdate((float val) => {
+        LeanTween.value(gameObject, 0, 1, _layoutTransitionDuration).setEase(LeanTweenType.easeInOutSine).setOnUpdate((float val) => {
             _rectTransform.anchorMin = Vector2.Lerp(anchorMinStart, anchorMinEnd, val);
             _rectTransform.anchorMax = Vector2.Lerp(anchorMaxStart, anchorMaxEnd, val);
             UpdateMargins();
@@ -115,7 +117,7 @@ public class CanvasPanel : MonoBehaviour
         Vector2 anchorMaxStart = _rectTransform.anchorMax;
         Vector2 anchorMinEnd = position;
         Vector2 anchorMaxEnd = anchorMaxStart + (position - _rectTransform.anchorMin);
-        LeanTween.value(gameObject, 0, 1, .5f).setEase(LeanTweenType.easeInOutSine).setOnUpdate((float val) =>
+        LeanTween.value(gameObject, 0, 1, _layoutTransitionDuration).setEase(LeanTweenType.easeInOutSine).setOnUpdate((float val) =>
         {
             _rectTransform.anchorMin = Vector2.Lerp(anchorMinStart, anchorMinEnd, val);
             _rectTransform.anchorMax = Vector2.Lerp(anchorMaxStart, anchorMaxEnd, val);
@@ -129,7 +131,7 @@ public class CanvasPanel : MonoBehaviour
         Vector2 anchorMaxStart = _rectTransform.anchorMax;
         Vector2 anchorMinEnd = new Vector2(_rectTransform.anchorMin.x, _rectTransform.anchorMax.y - size.y);
         Vector2 anchorMaxEnd = new Vector2(_rectTransform.anchorMin.x + size.x, _rectTransform.anchorMax.y);
-        LeanTween.value(gameObject, 0, 1, .5f).setEase(LeanTweenType.easeInOutSine).setOnUpdate((float val)=> {
+        LeanTween.value(gameObject, 0, 1, _layoutTransitionDuration).setEase(LeanTweenType.easeInOutSine).setOnUpdate((float val)=> {
             _rectTransform.anchorMin = Vector2.Lerp(anchorMinStart, anchorMinEnd, val);
             _rectTransform.anchorMax = Vector2.Lerp(anchorMaxStart, anchorMaxEnd, val);
             UpdateMargins();
@@ -159,8 +161,23 @@ public class CanvasPanel : MonoBehaviour
 
     public void SetText(string text)
 	{
-		_text.text = text;
-	}
+        Color color = _text.color;
+        var seq = LeanTween.sequence();
+        seq.append(LeanTween.value(gameObject, 1, 0, .125f).setEase(LeanTweenType.easeInOutSine).setOnUpdate((float val) =>
+        {
+            color.a = val;
+            _text.color = color;
+        }));
+        seq.append((object obj) =>
+        {
+            _text.text = text;
+        }, null);
+        seq.append(LeanTween.value(gameObject, 0, 1, .125f).setEase(LeanTweenType.easeInOutSine).setOnUpdate((float val) =>
+        {
+            color.a = val;
+            _text.color = color;
+        }));
+    }
 
 	public void SetTextColor(Color color)
 	{
@@ -199,10 +216,7 @@ public class CanvasPanel : MonoBehaviour
 
     public void ClearImage()
     {
-        _image.texture = null;
-        _image.gameObject.SetActive(false);
-        _videoPlayer.Pause();
-        _videoPlayer.gameObject.SetActive(false);
+        SetImageTexture(null);
     }
 
     public void SetImage(string url)
@@ -236,8 +250,12 @@ public class CanvasPanel : MonoBehaviour
     private IEnumerator LoadVideo(string filename)
     {
         _videoPlayer.enabled = true;
-        _audioSource.enabled = true;
         _image.gameObject.SetActive(true);
+        if (_image.texture == null)
+        {
+            _image.color = Color.clear;
+        }
+        _audioSource.enabled = true;
         _audioSource.Pause();
         _videoPlayer.url = Application.streamingAssetsPath + "/" + filename;
         _videoPlayer.Prepare();
@@ -245,7 +263,7 @@ public class CanvasPanel : MonoBehaviour
         {
             yield return null;
         }
-        _image.texture = _videoPlayer.texture;
+        SetImageTexture(_videoPlayer.texture);
         _videoPlayer.Play();
         _audioSource.Play();
     }
@@ -260,7 +278,7 @@ public class CanvasPanel : MonoBehaviour
             {
                 _cameraBasePosition = _camera.transform.position;
                 _mainCameraBasePosition = Camera.main.transform.position;
-                _image.texture = _camera.targetTexture;
+                SetImageTexture(_camera.targetTexture);
                 CorrectImageAspectRatio();
                 _image.gameObject.SetActive(true);
                 return;
@@ -306,6 +324,16 @@ public class CanvasPanel : MonoBehaviour
 		StoreTextPadding (top, right, bottom, left);
 		UpdateTextMarginsAndPadding ();
 	}
+
+    public void SetLayoutTransition(float duration)
+    {
+        _layoutTransitionDuration = duration;
+    }
+
+    public void SetImageTransition(float duration)
+    {
+        _imageTransitionDuration = duration;
+    }
 
     public Vector2 GetSize()
 	{
@@ -357,13 +385,61 @@ public class CanvasPanel : MonoBehaviour
                 _camera = null;
 				_image.gameObject.SetActive (true);
 				Texture2D texture = DownloadHandlerTexture.GetContent (www);
-				_image.texture = texture;
+                SetImageTexture(texture);
 				CorrectImageAspectRatio ();
 			}
 		}
 	}
 
-	private void CorrectImageAspectRatio()
+    private void SetImageTexture(Texture texture)
+    {
+        Color color;
+        bool noImageYet = _image.texture == null;
+        if (noImageYet)
+        {
+            color = Color.black;
+            color.a = 0;
+            _image.color = color;
+            _image.texture = texture;
+        }
+        else
+        {
+            color = Color.white;
+        }
+        _image.gameObject.SetActive(true);
+        var seq = LeanTween.sequence();
+        seq.append(LeanTween.value(gameObject, 1, 0, _imageTransitionDuration).setEase(LeanTweenType.easeInOutSine).setOnUpdate((float val) =>
+        {
+            if (noImageYet)
+            {
+                color.a = 0;
+            }
+            else
+            {
+                color.a = val;
+            }
+            _image.color = color;
+        }));
+        seq.append((object obj) =>
+        {
+            _image.texture = texture;
+            color = Color.white;
+            color.a = 0;
+            if (_image.texture == null)
+            {
+                _image.gameObject.SetActive(false);
+                _videoPlayer.Pause();
+                _videoPlayer.gameObject.SetActive(false);
+            }
+        }, null);
+        seq.append(LeanTween.value(gameObject, 0, 1, _imageTransitionDuration).setEase(LeanTweenType.easeInOutSine).setOnUpdate((float val) =>
+        {
+            color.a = val;
+            _image.color = color;
+        }));
+    }
+
+    private void CorrectImageAspectRatio()
 	{
 		// simulates "fill" or "cover" image sizing for panel while maintaining image aspect ratio
 		if (_image != null) {
