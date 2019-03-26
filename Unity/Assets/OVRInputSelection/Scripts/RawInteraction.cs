@@ -67,6 +67,9 @@ public class RawInteraction : MonoBehaviour
     private GameObject _prevStepwise;
     private string _prevTag;
 
+    [SerializeField] private GameObject _agroPodArrow;
+    [SerializeField] private GameObject _controlCenterArrow;
+
     void Start()
     {
         stepwiseControlCenter.SetActive(true);
@@ -253,6 +256,7 @@ public class RawInteraction : MonoBehaviour
                 agroPodPanel.SetActive(true);
                 _prevPanel = agroPodPanel;
                 _prevStepwise = stepwiseAgroPod;
+                _agroPodArrow.SetActive(false);
 
                 //child the panel to the right controller
                 //agroPodPanel.transform.SetParent(rightHand.transform);
@@ -282,6 +286,7 @@ public class RawInteraction : MonoBehaviour
                 controlCenterPanel.SetActive(true);
                 _prevPanel = controlCenterPanel;
                 _prevStepwise = stepwiseControlCenter;
+                _controlCenterArrow.SetActive(false);
             } 
   
 
