@@ -31,21 +31,27 @@ public class RawInteraction : MonoBehaviour
     public Material yellowMat;
     protected Material oldHoverMatOuter;
     protected Material oldHoverMatInner;
+    protected Material oldHoverMatControlCenter;
+
     public Material outlineMaterial;
     public Material backIdle;
     public Material backACtive;
     public UnityEngine.UI.Text outText;
 
+
+
     public GameObject cube;
     public bool hovering;
-    public GameObject stepwise_agroPod;
+    public GameObject stepwiseAgroPod;
+    public GameObject stepwiseControlCenter;
 
     public GameObject agroPodPanel;
     public GameObject astronautPanel;
     public GameObject controlCenterPanel;
     public string selectedTag;
 
-    private Conductor _conductor;
+    private Conductor _controlCenterConductor;
+    private Conductor _agroPodConductor;
     private bool panelActive;
 
     public GameObject rightHand;
@@ -57,14 +63,27 @@ public class RawInteraction : MonoBehaviour
     private float x;
     private float y;
 
+    private GameObject _prevPanel;
+    private GameObject _prevStepwise;
+    private string _prevTag;
+
     void Start()
     {
-       
+        stepwiseControlCenter.SetActive(true);
+        stepwiseAgroPod.SetActive(true);
+
+        _agroPodConductor = stepwiseAgroPod.GetComponent<Conductor>();
+        _agroPodConductor.OnScorePrepared += HandleScorePrepared; 
+        _controlCenterConductor = stepwiseControlCenter.GetComponent<Conductor>();
+        _controlCenterConductor.OnScorePrepared += HandleScorePrepared;
+
+        _prevTag = "";
 
         oldHoverMatOuter = GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material;
         oldHoverMatInner = GameObject.Find("Agro_propilen002").GetComponent<Renderer>().material;
 
-        _conductor = stepwise_agroPod.GetComponent<Conductor>();
+        oldHoverMatControlCenter = GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material;
+
         bDownRight = OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
         panelActive = false;
         hovering = false;
@@ -72,16 +91,23 @@ public class RawInteraction : MonoBehaviour
         x = 17;
         y = 0;
 
-        _conductor.OnScorePrepared += HandleScorePrepared;
-
     }
 
     private IEnumerator AutoStart()
     {
         yield return new WaitForSeconds(.5f);
-        if (_conductor != null)
+        if(selectedTag == "agroPod")
         {
-            _conductor.NextStep();
+            if (_agroPodConductor != null)
+            {
+                _agroPodConductor.NextStep();
+            }
+        } else if(selectedTag == "controlCenter")
+        {
+            if (_controlCenterConductor != null)
+            {
+                _controlCenterConductor.NextStep();
+            }
         }
     }
 
@@ -115,10 +141,14 @@ public class RawInteraction : MonoBehaviour
                 GameObject.Find("Agro_propilen002").GetComponent<Renderer>().material = outlineMaterial;
                 GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material = outlineMaterial;
             }
-            
 
-            //set hovering bool = true;
+            if(t.gameObject.tag == "controlCenter")
+            {
+                GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material = outlineMaterial;
+            }
             
+            //set hovering bool = true;
+
         }
         if (outText != null)
         {
@@ -139,6 +169,8 @@ public class RawInteraction : MonoBehaviour
             GameObject.Find("Agro_propilen002").GetComponent<Renderer>().material = oldHoverMatInner;
             GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material = oldHoverMatOuter;
 
+            GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material = oldHoverMatControlCenter;
+
             //set hovering bool = false;
             hovering = false;
         }
@@ -150,8 +182,21 @@ public class RawInteraction : MonoBehaviour
 
     public void NextStep()
     {
+        if (selectedTag == "agroPod")
+        {
+            if (_agroPodConductor != null)
+            {
+                _agroPodConductor.NextStep();
+            }
+        }
+        else if (selectedTag == "controlCenter")
+        {
+            if (_controlCenterConductor != null)
+            {
+                _controlCenterConductor.NextStep();
+            }
+        }
         Debug.Log("next step called");
-        _conductor.NextStep();
      
     }
 
@@ -159,6 +204,18 @@ public class RawInteraction : MonoBehaviour
     {
         Debug.Log("score prepared");
         StartCoroutine(AutoStart());
+    }
+
+    private void DeactivatePanel(string selectedTag)
+    {
+        Debug.Log("deactivate panel called, selected tag: " +selectedTag + "prev tag: " + _prevTag);
+        if (panelActive && !_prevTag.Equals(selectedTag))
+        {
+            
+            _prevPanel.SetActive(false);
+            _prevStepwise.SetActive(false);
+            _prevTag = selectedTag;
+        }
     }
 
     public void OnSelected(Transform t)
@@ -176,14 +233,27 @@ public class RawInteraction : MonoBehaviour
 
         if (hovering == true)
         {
+            DeactivatePanel(selectedTag);
             //activate the stepwise panel for selected object
             if (selectedTag == "agroPod")
             {
-                panelActive = true;
-                stepwise_agroPod.SetActive(true);
-                agroPodPanel.SetActive(true);
-
+                //stepwiseAgroPod.SetActive(true);
+                //_conductor = stepwiseAgroPod.GetComponent<Conductor>();
                 
+                
+                if (!agroPodPanel.activeInHierarchy)
+                {
+                    _agroPodConductor.Reset();
+                   // _agroPodConductor.NextStep();
+                }
+
+                panelActive = true;
+                Debug.Log("agro pod panel being activated");
+
+                agroPodPanel.SetActive(true);
+                _prevPanel = agroPodPanel;
+                _prevStepwise = stepwiseAgroPod;
+
                 //child the panel to the right controller
                 //agroPodPanel.transform.SetParent(rightHand.transform);
 
@@ -197,10 +267,21 @@ public class RawInteraction : MonoBehaviour
                 //astronautPanel.SetActive(true);
                 //astronautPanel.transform.SetParent(rightHand.transform);
             }
-            else if (selectedTag == "controlPod")
+            else if (selectedTag == "controlCenter")
             {
-                panelActive = true;
+                //stepwiseControlCenter.SetActive(true)
 
+                if (!controlCenterPanel.activeInHierarchy)
+                {
+                    _controlCenterConductor.Reset();
+                   // _controlCenterConductor.NextStep();
+                }
+
+                panelActive = true;
+                Debug.Log("control center panel being activated");
+                controlCenterPanel.SetActive(true);
+                _prevPanel = controlCenterPanel;
+                _prevStepwise = stepwiseControlCenter;
             } 
   
 

@@ -152,7 +152,8 @@ MonoBehaviour:
   outText: {fileID: 0}
   cube: {fileID: 0}
   hovering: 0
-  stepwise_agroPod: {fileID: 0}
+  stepwiseAgroPod: {fileID: 0}
+  stepwiseControlCenter: {fileID: 0}
   agroPodPanel: {fileID: 0}
   astronautPanel: {fileID: 0}
   controlCenterPanel: {fileID: 0}

@@ -263,6 +263,7 @@ public class CanvasPanel : MonoBehaviour
         {
             yield return null;
         }
+        CorrectImageAspectRatio();
         SetImageTexture(_videoPlayer.texture);
         _videoPlayer.Play();
         _audioSource.Play();
