@@ -6,6 +6,7 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="CanvasManager.cs" t="Include" />
         <e p="LeanTween" t="Include">
           <e p="Editor" t="Include">
             <e p="LeanTweenDocumentationEditor.cs" t="Include" />
@@ -348,7 +349,17 @@
             </e>
           </e>
         </e>
+        <e p="Scripts" t="Include">
+          <e p="IndicatorArrow.cs" t="Include" />
+        </e>
+        <e p="Shaders" t="Include">
+          <e p="UltimateOutline.shader" t="Include" />
+        </e>
         <e p="Stepwise" t="Include">
+          <e p="Demos" t="Include">
+            <e p="hello_world.xml" t="Include" />
+            <e p="SimpleInput.cs" t="Include" />
+          </e>
           <e p="Scripts" t="Include">
             <e p="Character.cs" t="Include" />
             <e p="Conductor.cs" t="Include" />
