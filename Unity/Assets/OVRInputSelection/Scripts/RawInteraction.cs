@@ -74,7 +74,7 @@ public class RawInteraction : MonoBehaviour
     {
         stepwiseControlCenter.SetActive(true);
         stepwiseAgroPod.SetActive(true);
-
+        
         _agroPodConductor = stepwiseAgroPod.GetComponent<Conductor>();
         _agroPodConductor.OnScorePrepared += HandleScorePrepared; 
         _controlCenterConductor = stepwiseControlCenter.GetComponent<Conductor>();
@@ -221,6 +221,30 @@ public class RawInteraction : MonoBehaviour
         }
     }
 
+    private IEnumerator DelayedNextStep()
+    {
+        yield return 0;
+        Debug.Log("Next step being called");
+        if (selectedTag == "agroPod")
+            _agroPodConductor.NextStep();
+        else if (selectedTag == "controlCenter")
+        {
+            _controlCenterConductor.NextStep();
+        }
+    }
+
+    private IEnumerator DelayedReset()
+    {
+        yield return 0;
+        Debug.Log("Reset being called");
+        if (selectedTag == "agroPod")
+            _agroPodConductor.Reset();
+        else if (selectedTag == "controlCenter")
+        {
+            _controlCenterConductor.Reset();
+        }
+    }
+
     public void OnSelected(Transform t)
     {
 
@@ -242,18 +266,19 @@ public class RawInteraction : MonoBehaviour
             {
                 //stepwiseAgroPod.SetActive(true);
                 //_conductor = stepwiseAgroPod.GetComponent<Conductor>();
-                
-                
+
+                agroPodPanel.SetActive(true);
                 if (!agroPodPanel.activeInHierarchy)
                 {
-                    _agroPodConductor.Reset();
-                   // _agroPodConductor.NextStep();
+                    StartCoroutine(DelayedReset());
+                    StartCoroutine(DelayedNextStep());
+                    //_agroPodConductor.NextStep();
                 }
 
                 panelActive = true;
                 Debug.Log("agro pod panel being activated");
 
-                agroPodPanel.SetActive(true);
+                
                 _prevPanel = agroPodPanel;
                 _prevStepwise = stepwiseAgroPod;
                 _agroPodArrow.SetActive(false);
@@ -274,16 +299,17 @@ public class RawInteraction : MonoBehaviour
             else if (selectedTag == "controlCenter")
             {
                 //stepwiseControlCenter.SetActive(true)
-
+                controlCenterPanel.SetActive(true);
                 if (!controlCenterPanel.activeInHierarchy)
                 {
-                    _controlCenterConductor.Reset();
+                    StartCoroutine(DelayedReset());
+                    StartCoroutine(DelayedNextStep());
                    // _controlCenterConductor.NextStep();
                 }
 
                 panelActive = true;
                 Debug.Log("control center panel being activated");
-                controlCenterPanel.SetActive(true);
+                
                 _prevPanel = controlCenterPanel;
                 _prevStepwise = stepwiseControlCenter;
                 _controlCenterArrow.SetActive(false);
