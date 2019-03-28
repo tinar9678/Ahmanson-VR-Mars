@@ -183,12 +183,13 @@ public class RawInteraction : MonoBehaviour
         }
     }
 
-    public void NextStep()
+    /*public void NextStep()
     {
         if (selectedTag == "agroPod")
         {
             if (_agroPodConductor != null)
             {
+                Debug.Log("next step agropod called");
                 _agroPodConductor.NextStep();
             }
         }
@@ -196,52 +197,83 @@ public class RawInteraction : MonoBehaviour
         {
             if (_controlCenterConductor != null)
             {
+                Debug.Log("next step control center called");
                 _controlCenterConductor.NextStep();
             }
         }
-        Debug.Log("next step called");
      
-    }
+    }*/
 
     private void HandleScorePrepared(Score score)
     {
         Debug.Log("score prepared");
-        StartCoroutine(AutoStart());
+        //StartCoroutine(AutoStart());
     }
 
     private void DeactivatePanel(string selectedTag)
     {
-        Debug.Log("deactivate panel called, selected tag: " +selectedTag + "prev tag: " + _prevTag);
-        if (panelActive && !_prevTag.Equals(selectedTag))
+       
+        if (panelActive && (!_prevTag.Equals(selectedTag) || _prevTag.Equals("")))
         {
-            
-            _prevPanel.SetActive(false);
-            _prevStepwise.SetActive(false);
+            Debug.Log("deactivate panel called, selected tag: " + selectedTag + "prev tag: " + _prevTag);
+            if(_prevPanel != null) 
+                _prevPanel.SetActive(false);
+            //_prevStepwise.SetActive(false);
             _prevTag = selectedTag;
         }
     }
 
-    private IEnumerator DelayedNextStep()
+    private IEnumerator DelayedResetAndNextStep()
     {
-        yield return 0;
-        Debug.Log("Next step being called");
         if (selectedTag == "agroPod")
+        {
+            Debug.Log("DelayedResetAndNextStep: Agropod");
+            yield return 0;
+            _agroPodConductor.Reset();
+            yield return 0;
             _agroPodConductor.NextStep();
+        }
         else if (selectedTag == "controlCenter")
         {
+            Debug.Log("DelayedResetAndNextStep: Control Center");
+            yield return 0;
+            _controlCenterConductor.Reset();
+            yield return 0;
             _controlCenterConductor.NextStep();
         }
     }
 
     private IEnumerator DelayedReset()
     {
-        yield return 0;
-        Debug.Log("Reset being called");
+   
         if (selectedTag == "agroPod")
+        {
+            yield return 0;
             _agroPodConductor.Reset();
+          
+        }
         else if (selectedTag == "controlCenter")
         {
+            yield return 0;
             _controlCenterConductor.Reset();
+          
+        }
+    }
+
+    private IEnumerator DelayedNextStep()
+    {
+
+        if (selectedTag == "agroPod")
+        {
+            yield return 0;
+            _agroPodConductor.NextStep();
+
+        }
+        else if (selectedTag == "controlCenter")
+        {
+            yield return 0;
+            _controlCenterConductor.NextStep();
+
         }
     }
 
@@ -260,23 +292,31 @@ public class RawInteraction : MonoBehaviour
 
         if (hovering == true)
         {
-            DeactivatePanel(selectedTag);
             //activate the stepwise panel for selected object
             if (selectedTag == "agroPod")
             {
                 //stepwiseAgroPod.SetActive(true);
                 //_conductor = stepwiseAgroPod.GetComponent<Conductor>();
 
-                agroPodPanel.SetActive(true);
+                //Pseudocode
+                /*if (panel isn’t active) {
+                    make panel active
+                    DelayedReset
+                }
+                DelayedNextStep
+                */
+                panelActive = true;
                 if (!agroPodPanel.activeInHierarchy)
                 {
-                    StartCoroutine(DelayedReset());
-                    StartCoroutine(DelayedNextStep());
-                    //_agroPodConductor.NextStep();
+                    Debug.Log("Not active");
+                    DeactivatePanel(selectedTag);
+                    agroPodPanel.SetActive(true);
+                    StartCoroutine(DelayedResetAndNextStep());  
+                } else
+                {
+                    Debug.Log("Agro pod panel already active: next step");
+                    _agroPodConductor.NextStep();
                 }
-
-                panelActive = true;
-                Debug.Log("agro pod panel being activated");
 
                 
                 _prevPanel = agroPodPanel;
@@ -299,15 +339,20 @@ public class RawInteraction : MonoBehaviour
             else if (selectedTag == "controlCenter")
             {
                 //stepwiseControlCenter.SetActive(true)
-                controlCenterPanel.SetActive(true);
+                panelActive = true;
                 if (!controlCenterPanel.activeInHierarchy)
                 {
-                    StartCoroutine(DelayedReset());
-                    StartCoroutine(DelayedNextStep());
+                    DeactivatePanel(selectedTag);
+                    controlCenterPanel.SetActive(true);
+                    StartCoroutine(DelayedResetAndNextStep());
+                    //StartCoroutine(DelayedNextStep());
                    // _controlCenterConductor.NextStep();
+                } else
+                {
+;                    _controlCenterConductor.NextStep();
                 }
-
-                panelActive = true;
+                
+                
                 Debug.Log("control center panel being activated");
                 
                 _prevPanel = controlCenterPanel;

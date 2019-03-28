@@ -97,16 +97,19 @@ public class CanvasPanel : MonoBehaviour
 	// accepts coordinates where 0,0 is bottom left corner
 	public void SetLayout (Rect layout)
 	{
-        Vector2 anchorMinStart = _rectTransform.anchorMin;
-        Vector2 anchorMaxStart = _rectTransform.anchorMax;
-        Vector2 anchorMinEnd = new Vector2(layout.xMin, layout.yMin);
-        Vector2 anchorMaxEnd = new Vector2(layout.xMax, layout.yMax);
-		_rectTransform.sizeDelta = Vector2.zero;
-        LeanTween.value(gameObject, 0, 1, _layoutTransitionDuration).setEase(LeanTweenType.easeInOutSine).setOnUpdate((float val) => {
-            _rectTransform.anchorMin = Vector2.Lerp(anchorMinStart, anchorMinEnd, val);
-            _rectTransform.anchorMax = Vector2.Lerp(anchorMaxStart, anchorMaxEnd, val);
-            UpdateMargins();
-        });
+        if(_rectTransform != null)
+        {
+            Vector2 anchorMinStart = _rectTransform.anchorMin;
+            Vector2 anchorMaxStart = _rectTransform.anchorMax;
+            Vector2 anchorMinEnd = new Vector2(layout.xMin, layout.yMin);
+            Vector2 anchorMaxEnd = new Vector2(layout.xMax, layout.yMax);
+            _rectTransform.sizeDelta = Vector2.zero;
+            LeanTween.value(gameObject, 0, 1, _layoutTransitionDuration).setEase(LeanTweenType.easeInOutSine).setOnUpdate((float val) => {
+                _rectTransform.anchorMin = Vector2.Lerp(anchorMinStart, anchorMinEnd, val);
+                _rectTransform.anchorMax = Vector2.Lerp(anchorMaxStart, anchorMaxEnd, val);
+                UpdateMargins();
+            });
+        }        
     }
 
 	// accepts coordinates where 0,0 is bottom left corner
