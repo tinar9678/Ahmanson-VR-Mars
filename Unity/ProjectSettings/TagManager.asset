@@ -9,6 +9,9 @@ TagManager:
   - agroPodPanel
   - controlCenter
   - exitButton
+  - MainMenu
+  - Scene1
+  - Scene2
   layers:
   - Default
   - TransparentFX

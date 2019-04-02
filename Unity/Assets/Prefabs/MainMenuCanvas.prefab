@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 2610286955755707549}
   m_Layer: 5
   m_Name: SecondSceneBorder
-  m_TagString: Untagged
+  m_TagString: Scene2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -576,7 +576,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8220218106134833574}
-  m_LocalRotation: {x: -0, y: -0.9991992, z: -0, w: 0.040011574}
+  m_LocalRotation: {x: 0, y: -0.9991993, z: 0, w: 0.040009793}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01696625, y: 0.01696625, z: 0.01696625}
   m_Children:
@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 8190540463799656808}
   m_Layer: 5
   m_Name: FirstSceneBorder
-  m_TagString: Untagged
+  m_TagString: Scene1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

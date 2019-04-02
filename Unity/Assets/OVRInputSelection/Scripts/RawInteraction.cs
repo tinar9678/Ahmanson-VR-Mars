@@ -48,6 +48,9 @@ public class RawInteraction : MonoBehaviour
     public GameObject agroPodPanel;
     public GameObject astronautPanel;
     public GameObject controlCenterPanel;
+    [SerializeField] private Image _scene1;
+    [SerializeField] private Image _scene2;
+    
     public string selectedTag;
 
     private Conductor _controlCenterConductor;
@@ -57,6 +60,8 @@ public class RawInteraction : MonoBehaviour
     public GameObject rightHand;
     //private bool triggerPressed;
     bool bDownRight;
+
+    //private bool _keyAPressed;
 
     public Camera auxCamera;
     private float speed;
@@ -367,7 +372,13 @@ public class RawInteraction : MonoBehaviour
                 _prevPanel = controlCenterPanel;
                 _prevStepwise = stepwiseControlCenter;
                 _controlCenterArrow.SetActive(false);
-            } 
+            } else if (selectedTag == "scene1")
+            {
+                Debug.Log("Load scene 1!");   
+            } else if (selectedTag == "scene2")
+            {
+                Debug.Log("Load scene 2!");   
+            }
 
             if(t.gameObject.name == "ExitButton")
             {
