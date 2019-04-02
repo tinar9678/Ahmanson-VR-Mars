@@ -155,6 +155,16 @@ public class RawInteraction : MonoBehaviour
                 GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material = outlineMaterial;
             }
             
+            if(t.gameObject.tag == "scene1")
+            {
+                _scene1.GetComponentInChildren<Image>().color = Color.yellow;
+            }
+            
+            if(t.gameObject.tag == "scene2")
+            {
+                _scene2.GetComponentInChildren<Image>().color = Color.yellow;
+            }
+            
             //set hovering bool = true;
 
         }
@@ -183,6 +193,8 @@ public class RawInteraction : MonoBehaviour
             GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material = oldHoverMatOuter;
 
             GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material = oldHoverMatControlCenter;
+            _scene2.GetComponentInChildren<Image>().color = Color.clear;
+            _scene1.GetComponentInChildren<Image>().color = Color.clear;
 
             //set hovering bool = false;
             hovering = false;
