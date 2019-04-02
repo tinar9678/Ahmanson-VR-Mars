@@ -374,10 +374,20 @@ public class RawInteraction : MonoBehaviour
                 _controlCenterArrow.SetActive(false);
             } else if (selectedTag == "scene1")
             {
-                Debug.Log("Load scene 1!");   
+                if (SceneManager.GetActiveScene().name != "DemoMarsScene")
+                {
+                    Debug.Log("Load scene 1!");
+                    SceneManager.LoadScene("DemoMarsScene");
+                }
+
             } else if (selectedTag == "scene2")
             {
-                Debug.Log("Load scene 2!");   
+                if (SceneManager.GetActiveScene().name != "Scene2")
+                {
+                    Debug.Log("Load scene 2!");
+                    SceneManager.LoadScene("Scene2");
+                }
+                //TODO: Add warning to show player is pressing on current scene!
             }
 
             if(t.gameObject.name == "ExitButton")
