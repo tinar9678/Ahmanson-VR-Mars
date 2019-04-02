@@ -161,6 +161,11 @@ public class RawInteraction : MonoBehaviour
 
     public void OnHoverExit(Transform t)
     {
+        if(t.gameObject.name == "exitButton")
+        {
+
+        }
+
         if (t.gameObject.name == "BackButton")
         {
             t.gameObject.GetComponent<Renderer>().material = backIdle;
@@ -292,6 +297,10 @@ public class RawInteraction : MonoBehaviour
 
         if (hovering == true)
         {
+            if(selectedTag == "exitButton")
+            {
+
+            }
             //activate the stepwise panel for selected object
             if (selectedTag == "agroPod")
             {
@@ -359,8 +368,13 @@ public class RawInteraction : MonoBehaviour
                 _prevStepwise = stepwiseControlCenter;
                 _controlCenterArrow.SetActive(false);
             } 
-  
 
+            if(t.gameObject.name == "ExitButton")
+            {
+                t.parent.gameObject.SetActive(false);
+            }
+         
+               
             if (t.gameObject.name == "BackButton")
             {
                 SceneManager.LoadScene("main", LoadSceneMode.Single);

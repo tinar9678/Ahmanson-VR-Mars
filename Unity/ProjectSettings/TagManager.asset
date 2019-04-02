@@ -8,6 +8,7 @@ TagManager:
   - agroPod
   - agroPodPanel
   - controlCenter
+  - exitButton
   layers:
   - Default
   - TransparentFX
