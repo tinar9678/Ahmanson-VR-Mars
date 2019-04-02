@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class HeadLockedCanvas : MonoBehaviour
 {
-    [SerializeField] private float _distance = 2f;
+   /* [SerializeField] private float _distance = 2f;
     [SerializeField] private float _smoothTime = 0.2f;
-    [SerializeField] private GameObject _cameraRig;
 
     private Vector3 _velocity;
     private Quaternion _rotationVelocity;
 
     private void Update() {
         // Center canvas in front of face
+        OVRPose head = OVRManager.display.GetHeadPose();
+
         transform.position = Vector3.SmoothDamp(
             transform.position,
-            _cameraRig.transform.position + _cameraRig.transform.rotation * new Vector3(0, 0, _distance),
+            head.Position + head.Rotation * new Vector3(0, 0, _distance),
             ref _velocity,
             _smoothTime);
 
         transform.rotation = SmoothDampQuaternion(
             transform.rotation,
-            _cameraRig.transform.rotation,
+            head.Rotation,
             ref _rotationVelocity,
             _smoothTime);
     }
@@ -51,5 +52,5 @@ public class HeadLockedCanvas : MonoBehaviour
         currentVelocity.w = (result.w - current.w) * dtInv;
         return new Quaternion(result.x, result.y, result.z, result.w);
     }
-
+    */
 }
