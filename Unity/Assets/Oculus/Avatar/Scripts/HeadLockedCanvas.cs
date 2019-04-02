@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeadLockedCanvas : MonoBehaviour
 {
-    [SerializeField] private float _distance = 2f;
+   /* [SerializeField] private float _distance = 2f;
     [SerializeField] private float _smoothTime = 0.2f;
 
     private Vector3 _velocity;
@@ -12,7 +12,7 @@ public class HeadLockedCanvas : MonoBehaviour
 
     private void Update() {
         // Center canvas in front of face
-        //ITrackedDevice head = InputLayer.Headset;
+        OVRPose head = OVRManager.display.GetHeadPose();
 
         transform.position = Vector3.SmoothDamp(
             transform.position,
@@ -52,5 +52,5 @@ public class HeadLockedCanvas : MonoBehaviour
         currentVelocity.w = (result.w - current.w) * dtInv;
         return new Quaternion(result.x, result.y, result.z, result.w);
     }
-
+    */
 }

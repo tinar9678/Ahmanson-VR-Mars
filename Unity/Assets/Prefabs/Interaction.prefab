@@ -171,6 +171,9 @@ MonoBehaviour:
   agroPodPanel: {fileID: 0}
   astronautPanel: {fileID: 0}
   controlCenterPanel: {fileID: 0}
+  _mainMenuCanvas: {fileID: 0}
+  _scene1: {fileID: 0}
+  _scene2: {fileID: 0}
   selectedTag: 
   rightHand: {fileID: 0}
   auxCamera: {fileID: 0}

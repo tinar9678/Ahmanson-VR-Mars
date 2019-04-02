@@ -48,6 +48,8 @@ public class RawInteraction : MonoBehaviour
     public GameObject agroPodPanel;
     public GameObject astronautPanel;
     public GameObject controlCenterPanel;
+
+    [SerializeField] private Canvas _mainMenuCanvas;
     [SerializeField] private Image _scene1;
     [SerializeField] private Image _scene2;
     
@@ -60,8 +62,7 @@ public class RawInteraction : MonoBehaviour
     public GameObject rightHand;
     //private bool triggerPressed;
     bool bDownRight;
-
-    //private bool _keyAPressed;
+    
 
     public Camera auxCamera;
     private float speed;
@@ -91,7 +92,7 @@ public class RawInteraction : MonoBehaviour
         oldHoverMatInner = GameObject.Find("Agro_propilen002").GetComponent<Renderer>().material;
 
         oldHoverMatControlCenter = GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material;
-
+        
         bDownRight = OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
         panelActive = false;
         hovering = false;
@@ -125,7 +126,11 @@ public class RawInteraction : MonoBehaviour
        //auxCamera.transform.Rotate(0, speed * Time.deltaTime, 0);
        auxCamera.transform.rotation = Quaternion.Euler(x, y, 0);
 
-
+        if(OVRInput.GetDown(OVRInput.Button.One))
+        {
+            Debug.Log("A pressed!!");
+            _mainMenuCanvas.gameObject.SetActive(true);
+        }
     }
 
     public void OnHoverEnter(Transform t)
