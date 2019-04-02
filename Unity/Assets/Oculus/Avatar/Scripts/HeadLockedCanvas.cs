@@ -6,23 +6,22 @@ public class HeadLockedCanvas : MonoBehaviour
 {
     [SerializeField] private float _distance = 2f;
     [SerializeField] private float _smoothTime = 0.2f;
+    [SerializeField] private GameObject _cameraRig;
 
     private Vector3 _velocity;
     private Quaternion _rotationVelocity;
 
     private void Update() {
         // Center canvas in front of face
-        //ITrackedDevice head = InputLayer.Headset;
-
         transform.position = Vector3.SmoothDamp(
             transform.position,
-            head.Position + head.Rotation * new Vector3(0, 0, _distance),
+            _cameraRig.transform.position + _cameraRig.transform.rotation * new Vector3(0, 0, _distance),
             ref _velocity,
             _smoothTime);
 
         transform.rotation = SmoothDampQuaternion(
             transform.rotation,
-            head.Rotation,
+            _cameraRig.transform.rotation,
             ref _rotationVelocity,
             _smoothTime);
     }
