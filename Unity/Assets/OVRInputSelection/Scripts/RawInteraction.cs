@@ -50,6 +50,7 @@ public class RawInteraction : MonoBehaviour
     public GameObject controlCenterPanel;
 
     [SerializeField] private Canvas _mainMenuCanvas;
+    [SerializeField] private bool _mainMenuActive;
     [SerializeField] private Image _scene1;
     [SerializeField] private Image _scene2;
     
@@ -99,6 +100,7 @@ public class RawInteraction : MonoBehaviour
         speed = -10f;
         x = 17;
         y = 0;
+        _mainMenuActive = false;
 
     }
 
@@ -129,7 +131,8 @@ public class RawInteraction : MonoBehaviour
         if(OVRInput.GetDown(OVRInput.Button.One))
         {
             Debug.Log("A pressed!!");
-            _mainMenuCanvas.gameObject.SetActive(true);
+            _mainMenuCanvas.gameObject.SetActive(!_mainMenuActive);
+            _mainMenuActive = !_mainMenuActive;
         }
     }
 
@@ -160,12 +163,12 @@ public class RawInteraction : MonoBehaviour
                 GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material = outlineMaterial;
             }
             
-            if(t.gameObject.tag == "scene1")
+            if(t.gameObject.tag == "Scene1")
             {
                 _scene1.GetComponentInChildren<Image>().color = Color.yellow;
             }
             
-            if(t.gameObject.tag == "scene2")
+            if(t.gameObject.tag == "Scene2")
             {
                 _scene2.GetComponentInChildren<Image>().color = Color.yellow;
             }
@@ -209,27 +212,6 @@ public class RawInteraction : MonoBehaviour
             outText.text = "<b>Last Interaction:</b>\nHover Exit:" + t.gameObject.name;
         }
     }
-
-    /*public void NextStep()
-    {
-        if (selectedTag == "agroPod")
-        {
-            if (_agroPodConductor != null)
-            {
-                Debug.Log("next step agropod called");
-                _agroPodConductor.NextStep();
-            }
-        }
-        else if (selectedTag == "controlCenter")
-        {
-            if (_controlCenterConductor != null)
-            {
-                Debug.Log("next step control center called");
-                _controlCenterConductor.NextStep();
-            }
-        }
-     
-    }*/
 
     private void HandleScorePrepared(Score score)
     {
@@ -389,16 +371,18 @@ public class RawInteraction : MonoBehaviour
                 _prevPanel = controlCenterPanel;
                 _prevStepwise = stepwiseControlCenter;
                 _controlCenterArrow.SetActive(false);
-            } else if (selectedTag == "scene1")
+            } else if (selectedTag == "Scene1")
             {
+                Debug.Log("Active scene: " + SceneManager.GetActiveScene().name);
                 if (SceneManager.GetActiveScene().name != "DemoMarsScene")
                 {
                     Debug.Log("Load scene 1!");
                     SceneManager.LoadScene("DemoMarsScene");
                 }
 
-            } else if (selectedTag == "scene2")
+            } else if (selectedTag == "Scene2")
             {
+                Debug.Log("Active scene: " + SceneManager.GetActiveScene().name);
                 if (SceneManager.GetActiveScene().name != "Scene2")
                 {
                     Debug.Log("Load scene 2!");
@@ -409,6 +393,10 @@ public class RawInteraction : MonoBehaviour
 
             if(t.gameObject.name == "ExitButton")
             {
+                if(t.parent.gameObject.tag == "MainMenu")
+                {
+                    _mainMenuActive = !_mainMenuActive;
+                }
                 t.parent.gameObject.SetActive(false);
             }
          
