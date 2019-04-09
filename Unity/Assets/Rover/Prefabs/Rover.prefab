@@ -411,9 +411,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4308500837687970}
   - component: {fileID: 95060190207298312}
+  - component: {fileID: 3109857287136654359}
   m_Layer: 0
   m_Name: Rover
-  m_TagString: Untagged
+  m_TagString: Rover
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -427,7 +428,7 @@ Transform:
   m_GameObject: {fileID: 1512620696268270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.364322, y: 3.364322, z: 3.364322}
   m_Children:
   - {fileID: 4467828448054056}
   - {fileID: 4314405502865220}
@@ -453,6 +454,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &3109857287136654359
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512620696268270}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1533431242256150
 GameObject:
   m_ObjectHideFlags: 0

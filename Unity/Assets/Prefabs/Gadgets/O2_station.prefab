@@ -88,9 +88,10 @@ GameObject:
   - component: {fileID: 4715876739849010}
   - component: {fileID: 33430099511230092}
   - component: {fileID: 23008283910588552}
+  - component: {fileID: 9074916648831949782}
   m_Layer: 0
   m_Name: Sphere_cell
-  m_TagString: Untagged
+  m_TagString: GasTank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,6 +157,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &9074916648831949782
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206309884879150}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.573218, y: 5.621072, z: 5.5970936}
+  m_Center: {x: -0.000005723944, y: 3.3700142, z: -0.000015263693}
 --- !u!1 &1355846028709670
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,9 +523,10 @@ GameObject:
   - component: {fileID: 4620236437810764}
   - component: {fileID: 33444991893795658}
   - component: {fileID: 23903256582167778}
+  - component: {fileID: 5371702574647080304}
   m_Layer: 0
-  m_Name: Sphere_cell001
-  m_TagString: Untagged
+  m_Name: Sphere_cell
+  m_TagString: GasTank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -577,6 +592,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &5371702574647080304
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734339682183212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.573218, y: 5.621072, z: 5.5970936}
+  m_Center: {x: -0.0000038165954, y: 3.3700142, z: -0.0000076342985}
 --- !u!1 &1741786655976514
 GameObject:
   m_ObjectHideFlags: 0

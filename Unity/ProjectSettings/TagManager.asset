@@ -12,6 +12,11 @@ TagManager:
   - MainMenu
   - Scene1
   - Scene2
+  - rocket
+  - satellite
+  - solarPanel
+  - GasTank
+  - Rover
   layers:
   - Default
   - TransparentFX

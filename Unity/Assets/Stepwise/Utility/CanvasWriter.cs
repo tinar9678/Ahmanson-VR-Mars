@@ -108,7 +108,7 @@ public class CanvasWriter : MonoBehaviour
 
     private void HandleStepExecuted (Step step)
 	{
-		//Debug.Log(step.command+" "+step.target+" "+step.content);
+		Debug.Log(step.command+" "+step.target+" "+step.content);
         if (canvas.isActiveAndEnabled)
         {
             Character character = step.target as Character;
