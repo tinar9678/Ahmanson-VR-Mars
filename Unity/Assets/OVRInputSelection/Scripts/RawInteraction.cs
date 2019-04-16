@@ -68,7 +68,8 @@ public class RawInteraction : MonoBehaviour
     [SerializeField] private bool _mainMenuActive;
     [SerializeField] private Image _scene1;
     [SerializeField] private Image _scene2;
-    
+    [SerializeField] private Image _credits;
+
     public string selectedTag;
 
     private Conductor _roverConductor;
@@ -92,6 +93,14 @@ public class RawInteraction : MonoBehaviour
     private GameObject _prevPanel;
     private GameObject _prevStepwise;
     private string _prevTag;
+
+    Sprite sceneA_Hilite;
+    Sprite sceneB_Hilite;
+    Sprite credits_Hilite;
+
+    Sprite sceneA_original;
+    Sprite sceneB_original;
+    Sprite credits_original;
 
     [SerializeField] private GameObject _agroPodArrow;
     [SerializeField] private GameObject _gasTankArrow;
@@ -135,6 +144,14 @@ public class RawInteraction : MonoBehaviour
         oldHoverMatSolarPanel = GameObject.Find("Solar_panel_panel").GetComponent<Renderer>().material;
         oldHoverMatGasTank = GameObject.Find("Sphere_cell").GetComponent<Renderer>().material;
         oldHoverRover = GameObject.Find("rover").GetComponent<Renderer>().material;
+
+        sceneA_original = Resources.Load<Sprite>("scene-a");
+        sceneB_original = Resources.Load<Sprite>("scene-b");
+        credits_original = Resources.Load<Sprite>("scene-c");
+
+        sceneA_Hilite = Resources.Load<Sprite>("scene-a-hilite");
+        sceneB_Hilite = Resources.Load<Sprite>("scene-b-hilite");
+        credits_Hilite = Resources.Load<Sprite>("scene-c-hilite");
 
         bDownRight = OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
         panelActive = false;
@@ -247,13 +264,22 @@ public class RawInteraction : MonoBehaviour
             if (t.gameObject.tag == "Scene1")
             {
                 _scene1.GetComponentInChildren<Image>().color = Color.yellow;
+                _scene1.transform.GetChild(0).GetComponent<Image>().sprite = sceneA_Hilite;
+                
             }
             
             if(t.gameObject.tag == "Scene2")
             {
                 _scene2.GetComponentInChildren<Image>().color = Color.yellow;
+                _scene2.transform.GetChild(0).GetComponent<Image>().sprite = sceneB_Hilite;
             }
-            
+
+            if (t.gameObject.tag == "Credits")
+            {
+                _credits.GetComponentInChildren<Image>().color = Color.yellow;
+                _credits.transform.GetChild(0).GetComponent<Image>().sprite = credits_Hilite;
+            }
+
             //set hovering bool = true;
 
         }
@@ -305,6 +331,10 @@ public class RawInteraction : MonoBehaviour
 
             _scene2.GetComponentInChildren<Image>().color = Color.clear;
             _scene1.GetComponentInChildren<Image>().color = Color.clear;
+
+            _scene1.transform.GetChild(0).GetComponent<Image>().sprite = sceneA_original;
+            _scene2.transform.GetChild(0).GetComponent<Image>().sprite = sceneB_original;
+            _credits.transform.GetChild(0).GetComponent<Image>().sprite = credits_original;
 
             //set hovering bool = false;
             hovering = false;
@@ -593,6 +623,7 @@ public class RawInteraction : MonoBehaviour
             }
             else if (selectedTag == "Scene1")
             {
+                
                 Debug.Log("Active scene: " + SceneManager.GetActiveScene().name);
                 if (SceneManager.GetActiveScene().name != "DemoMarsScene")
                 {
@@ -603,6 +634,7 @@ public class RawInteraction : MonoBehaviour
             }
             else if (selectedTag == "Scene2")
             {
+                t.gameObject.GetComponentInChildren<Image>().sprite = Resources.Load("scene-b-hilite") as Sprite;
                 Debug.Log("Active scene: " + SceneManager.GetActiveScene().name);
                 if (SceneManager.GetActiveScene().name != "Scene2")
                 {

@@ -17,6 +17,7 @@ TagManager:
   - solarPanel
   - GasTank
   - Rover
+  - Credits
   layers:
   - Default
   - TransparentFX
