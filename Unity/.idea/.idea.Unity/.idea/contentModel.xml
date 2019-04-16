@@ -6,7 +6,16 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Astronaut Next-Gen" t="Include">
+          <e p="AstronautWalk.cs" t="Include" />
+        </e>
         <e p="CanvasManager.cs" t="Include" />
+        <e p="Design-assets" t="Include">
+          <e p="Baloo_Bhaina" t="Include">
+            <e p="OFL.txt" t="Include" />
+          </e>
+          <e p="specs.txt" t="Include" />
+        </e>
         <e p="LeanTween" t="Include">
           <e p="Editor" t="Include">
             <e p="LeanTweenDocumentationEditor.cs" t="Include" />
@@ -23,6 +32,11 @@
           </e>
           <e p="License.txt" t="Include" />
           <e p="ReadMe.txt" t="Include" />
+        </e>
+        <e p="Mars Model Pack v1" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="DoorStartOpen.cs" t="Include" />
+          </e>
         </e>
         <e p="Oculus" t="Include">
           <e p="Avatar" t="Include">
@@ -73,6 +87,7 @@
               </e>
             </e>
             <e p="Scripts" t="Include">
+              <e p="HeadLockedCanvas.cs" t="Include" />
               <e p="OvrAvatar.cs" t="Include" />
               <e p="OvrAvatarAsset.cs" t="Include" />
               <e p="OvrAvatarAssetMesh.cs" t="Include" />
@@ -334,6 +349,7 @@
           <e p="Scripts" t="Include">
             <e p="BackButtonLogic.cs" t="Include" />
             <e p="MainMenuInteraction.cs" t="Include" />
+            <e p="MainMenuRawInteraction.cs" t="Include" />
             <e p="PhysicsInteraction.cs" t="Include" />
             <e p="RawInteraction.cs" t="Include" />
             <e p="UIInteraction.cs" t="Include" />
@@ -412,6 +428,14 @@
           <e p="Shaders" t="Include">
             <e p="TerrBumpAddPass.shader" t="Include" />
             <e p="TerrBumpFirstPass.shader" t="Include" />
+          </e>
+        </e>
+        <e p="TGS Mars" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="PlanetRotate.cs" t="Include" />
+          </e>
+          <e p="Shaders" t="Include">
+            <e p="Mars.shader" t="Include" />
           </e>
         </e>
       </e>
