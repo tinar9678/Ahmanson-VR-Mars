@@ -27,18 +27,7 @@ using System.Collections;
 
 public class MainMenuRawInteraction : MonoBehaviour
 {
-    protected Material oldHoverMat;
-    public Material yellowMat;
-    protected Material oldHoverMatOuter;
-    protected Material oldHoverMatInner;
-    //protected Material oldHoverMatControlCenter;
-    protected Material oldHoverMatRocket;
-    protected Material oldHoverMatSatellite;
-    protected Material oldHoverMatSolarPanel;
-    protected Material oldHoverMatGasTank;
-    protected Material oldHoverRover;
-
-    public Material outlineMaterial;
+    
     public Material backIdle;
     public Material backActive;
     public UnityEngine.UI.Text outText;
@@ -51,6 +40,15 @@ public class MainMenuRawInteraction : MonoBehaviour
     [SerializeField] private bool _mainMenuActive;
     [SerializeField] private Image _scene1;
     [SerializeField] private Image _scene2;
+    [SerializeField] private Image _credits;
+    
+    Sprite sceneA_Hilite;
+    Sprite sceneB_Hilite;
+    Sprite credits_Hilite;
+
+    Sprite sceneA_original;
+    Sprite sceneB_original;
+    Sprite credits_original;
     
     public string selectedTag;
 
@@ -76,6 +74,14 @@ public class MainMenuRawInteraction : MonoBehaviour
         panelActive = false;
         hovering = false;
         _mainMenuActive = false;
+        
+        sceneA_original = Resources.Load<Sprite>("scene-a");
+        sceneB_original = Resources.Load<Sprite>("scene-b");
+        credits_original = Resources.Load<Sprite>("scene-c");
+
+        sceneA_Hilite = Resources.Load<Sprite>("scene-a-hilite");
+        sceneB_Hilite = Resources.Load<Sprite>("scene-b-hilite");
+        credits_Hilite = Resources.Load<Sprite>("scene-c-hilite");
 
     }
 
@@ -116,67 +122,26 @@ public class MainMenuRawInteraction : MonoBehaviour
             selectedTag = t.gameObject.tag;
             Debug.Log("hovered tag is: " + selectedTag);
 
-            //oldHoverMat = t.gameObject.GetComponent<Renderer>().material;
-            //t.gameObject.GetComponent<Renderer>().material = yellowMat;
-            if(t.gameObject.tag == "agroPod")
-            {
-                
-                GameObject.Find("Agro_propilen002").GetComponent<Renderer>().material = outlineMaterial;
-                GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material = outlineMaterial;
-            }
-
-            if (t.gameObject.tag == "rocket")
-            {
-                GameObject.Find("RocketTop").GetComponent<Renderer>().material = outlineMaterial;       
-            }
-
-            if (t.gameObject.tag == "Rover")
-            {
-                GameObject.Find("rover").GetComponent<Renderer>().material = outlineMaterial;
-            }
-
-            if (t.gameObject.tag == "satellite")
-            {
-                GameObject.Find("Satelite_plate").GetComponent<Renderer>().material = outlineMaterial;
-            }
-
-            if (t.gameObject.tag == "solarPanel")
-            {
-                foreach(GameObject solarPanel in GameObject.FindGameObjectsWithTag("solarPanel"))
-                {
-                    if(solarPanel.name == "Solar_panel_panel")
-                    {
-                        solarPanel.GetComponent<Renderer>().material = outlineMaterial;
-                    }
-                } 
-            }
-           
-            if (t.gameObject.tag == "GasTank")
-            {
-                foreach (GameObject gasTank in GameObject.FindGameObjectsWithTag("GasTank"))
-                {
-                    if (gasTank.name == "Sphere_cell")
-                    {
-                        gasTank.GetComponent<Renderer>().material = outlineMaterial;
-                    }
-                }
-            }
-
-            /* if(t.gameObject.tag == "controlCenter")
-             {
-                 GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material = outlineMaterial;
-             }*/
 
             if (t.gameObject.tag == "Scene1")
             {
                 _scene1.GetComponentInChildren<Image>().color = Color.yellow;
+                _scene1.transform.GetChild(0).GetComponent<Image>().sprite = sceneA_Hilite;
+                
             }
             
             if(t.gameObject.tag == "Scene2")
             {
                 _scene2.GetComponentInChildren<Image>().color = Color.yellow;
+                _scene2.transform.GetChild(0).GetComponent<Image>().sprite = sceneB_Hilite;
             }
-            
+
+            if (t.gameObject.tag == "Credits")
+            {
+                _credits.GetComponentInChildren<Image>().color = Color.yellow;
+                _credits.transform.GetChild(0).GetComponent<Image>().sprite = credits_Hilite;
+            }
+
             //set hovering bool = true;
 
         }
@@ -199,35 +164,12 @@ public class MainMenuRawInteraction : MonoBehaviour
         }
         else
         {
-
-            //t.gameObject.GetComponent<Renderer>().material = oldHoverMat;
-            GameObject.Find("Agro_propilen002").GetComponent<Renderer>().material = oldHoverMatInner;
-            GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material = oldHoverMatOuter;
-
-            // GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material = oldHoverMatControlCenter;
-            GameObject.Find("RocketTop").GetComponent<Renderer>().material = oldHoverMatRocket;
-            GameObject.Find("Satelite_plate").GetComponent<Renderer>().material = oldHoverMatSatellite;
-            //GameObject.Find("Solar_panel_panel").GetComponent<Renderer>().material = oldHoverMatSolarPanel;
-            foreach (GameObject solarPanel in GameObject.FindGameObjectsWithTag("solarPanel"))
-            {
-                if (solarPanel.name == "Solar_panel_panel")
-                {
-                    solarPanel.GetComponent<Renderer>().material = oldHoverMatSolarPanel;
-                }
-            }
-
-            foreach (GameObject gasTank in GameObject.FindGameObjectsWithTag("GasTank"))
-            {
-                if (gasTank.name == "Sphere_cell")
-                {
-                    gasTank.GetComponent<Renderer>().material = oldHoverMatGasTank;
-                }
-            }
-            
-            GameObject.Find("rover").GetComponent<Renderer>().material = oldHoverRover;
-
             _scene2.GetComponentInChildren<Image>().color = Color.clear;
             _scene1.GetComponentInChildren<Image>().color = Color.clear;
+
+            _scene1.transform.GetChild(0).GetComponent<Image>().sprite = sceneA_original;
+            _scene2.transform.GetChild(0).GetComponent<Image>().sprite = sceneB_original;
+            _credits.transform.GetChild(0).GetComponent<Image>().sprite = credits_original;
 
             //set hovering bool = false;
             hovering = false;
@@ -265,6 +207,15 @@ public class MainMenuRawInteraction : MonoBehaviour
             }
 
             //TODO: Add warning to show player is pressing on current scene!
+        } else if (selectedTag == "Credits")
+        {
+            Debug.Log("Active scene: " + SceneManager.GetActiveScene().name);
+            if (SceneManager.GetActiveScene().name != "Credits")
+            {
+                Debug.Log("Load credits!");
+                SceneManager.LoadScene("CreditsScene");
+            }
+
         }
 
         if (t.gameObject.name == "ExitButton")

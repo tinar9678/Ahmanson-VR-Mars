@@ -642,7 +642,17 @@ public class RawInteraction : MonoBehaviour
                     SceneManager.LoadScene("Scene2");
                 }
                 //TODO: Add warning to show player is pressing on current scene!
+            } else if (selectedTag == "Credits")
+            {
+                Debug.Log("Active scene: " + SceneManager.GetActiveScene().name);
+                if (SceneManager.GetActiveScene().name != "Credits")
+                {
+                    Debug.Log("Load credits!");
+                    SceneManager.LoadScene("CreditsScene");
+                }
+
             }
+
 
             if(t.gameObject.name == "ExitButton")
             {
