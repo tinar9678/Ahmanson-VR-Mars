@@ -58,6 +58,8 @@ public class MainMenuRawInteraction : MonoBehaviour
     private Conductor _rocketConductor;
     private Conductor _satelliteConductor;
     private Conductor _solarPanelConductor;
+
+
     private bool panelActive;
 
     public GameObject rightHand;

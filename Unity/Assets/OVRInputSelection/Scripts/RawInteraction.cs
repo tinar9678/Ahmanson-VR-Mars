@@ -37,6 +37,7 @@ public class RawInteraction : MonoBehaviour
     protected Material oldHoverMatSolarPanel;
     protected Material oldHoverMatGasTank;
     protected Material oldHoverRover;
+    protected Material oldHoverHabitatPod;
 
     public Material outlineMaterial;
     public Material backIdle;
@@ -53,6 +54,7 @@ public class RawInteraction : MonoBehaviour
     public GameObject stepwiseSolarPanel;
     public GameObject stepwiseRover;
     public GameObject stepwiseGasTanks;
+    public GameObject stepwiseHabitatPod;
 
     public GameObject agroPodPanel;
     public GameObject astronautPanel;
@@ -61,6 +63,7 @@ public class RawInteraction : MonoBehaviour
     public GameObject solarPanel_Panel;
     public GameObject gasTanks_Panel;
     public GameObject rover_Panel;
+    public GameObject habitatPod_Panel;
 
     //public GameObject controlCenterPanel;
 
@@ -78,6 +81,7 @@ public class RawInteraction : MonoBehaviour
     private Conductor _rocketConductor;
     private Conductor _satelliteConductor;
     private Conductor _solarPanelConductor;
+    private Conductor _habitatPodConductor;
     private bool panelActive;
 
     public GameObject rightHand;
@@ -133,6 +137,9 @@ public class RawInteraction : MonoBehaviour
         _gasTanksConductor = stepwiseGasTanks.GetComponent<Conductor>();
         _gasTanksConductor.OnScorePrepared += HandleScorePrepared;
 
+        _habitatPodConductor = stepwiseHabitatPod.GetComponent<Conductor>();
+        _habitatPodConductor.OnScorePrepared += HandleScorePrepared;
+
         _prevTag = "";
 
         oldHoverMatOuter = GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material;
@@ -144,6 +151,7 @@ public class RawInteraction : MonoBehaviour
         oldHoverMatSolarPanel = GameObject.Find("Solar_panel_panel").GetComponent<Renderer>().material;
         oldHoverMatGasTank = GameObject.Find("Sphere_cell").GetComponent<Renderer>().material;
         oldHoverRover = GameObject.Find("rover").GetComponent<Renderer>().material;
+        //oldHoverHabitatPod = GameObject.Find()
 
         sceneA_original = Resources.Load<Sprite>("scene-a");
         sceneB_original = Resources.Load<Sprite>("scene-b");
