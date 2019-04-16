@@ -105,7 +105,7 @@ public class MainMenuRawInteraction : MonoBehaviour
 
         if(OVRInput.GetDown(OVRInput.Button.One))
         {
-            Debug.Log("A pressed!!");
+            Debug.Log("main menu raw interaction A pressed!!");
             _mainMenuCanvas.gameObject.SetActive(!_mainMenuActive);
             _mainMenuActive = !_mainMenuActive;
         }

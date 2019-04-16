@@ -675,6 +675,120 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1245942066
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6567304912423173503, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: m_Name
+      value: HoverRaycaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173501, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.2650001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173501, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.735
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173501, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173501, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173501, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173501, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173501, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173501, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173501, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173501, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173501, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173502, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: trackingSpace
+      value: 
+      objectReference: {fileID: 1413126756}
+    - target: {fileID: 6567304912423173502, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: onHoverEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 364534385}
+    - target: {fileID: 6567304912423173502, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: onHoverEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnHoverEnter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173502, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: onHoverExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 364534385}
+    - target: {fileID: 6567304912423173502, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: onHoverExit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnHoverExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173502, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: onPrimarySelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 364534385}
+    - target: {fileID: 6567304912423173502, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: onPrimarySelect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSelected
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173502, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: onSecondarySelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 364534385}
+    - target: {fileID: 6567304912423173502, guid: 08a8cd125a1284db69816a5a5dcf1c38,
+        type: 3}
+      propertyPath: onSecondarySelect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSelected
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 08a8cd125a1284db69816a5a5dcf1c38, type: 3}
 --- !u!1 &1305709400 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: 126d619cf4daa52469682f85c1378b4a,
@@ -1310,6 +1424,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MainMenuHoverRaycaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567304912423173503, guid: 540cb3f4bd1e04e03a8c2e287c4e1667,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6567304912423173501, guid: 540cb3f4bd1e04e03a8c2e287c4e1667,
         type: 3}

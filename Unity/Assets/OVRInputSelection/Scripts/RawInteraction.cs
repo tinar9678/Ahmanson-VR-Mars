@@ -37,7 +37,7 @@ public class RawInteraction : MonoBehaviour
     protected Material oldHoverMatSolarPanel;
     protected Material oldHoverMatGasTank;
     protected Material oldHoverRover;
-    protected Material oldHoverHabitatPod;
+    //protected Material oldHoverHabitatPod;
 
     public Material outlineMaterial;
     public Material backIdle;
@@ -54,7 +54,7 @@ public class RawInteraction : MonoBehaviour
     public GameObject stepwiseSolarPanel;
     public GameObject stepwiseRover;
     public GameObject stepwiseGasTanks;
-    public GameObject stepwiseHabitatPod;
+    //public GameObject stepwiseHabitatPod;
 
     public GameObject agroPodPanel;
     public GameObject astronautPanel;
@@ -63,7 +63,7 @@ public class RawInteraction : MonoBehaviour
     public GameObject solarPanel_Panel;
     public GameObject gasTanks_Panel;
     public GameObject rover_Panel;
-    public GameObject habitatPod_Panel;
+    //public GameObject habitatPod_Panel;
 
     //public GameObject controlCenterPanel;
 
@@ -81,7 +81,7 @@ public class RawInteraction : MonoBehaviour
     private Conductor _rocketConductor;
     private Conductor _satelliteConductor;
     private Conductor _solarPanelConductor;
-    private Conductor _habitatPodConductor;
+    //private Conductor _habitatPodConductor;
     private bool panelActive;
 
     public GameObject rightHand;
@@ -137,8 +137,8 @@ public class RawInteraction : MonoBehaviour
         _gasTanksConductor = stepwiseGasTanks.GetComponent<Conductor>();
         _gasTanksConductor.OnScorePrepared += HandleScorePrepared;
 
-        _habitatPodConductor = stepwiseHabitatPod.GetComponent<Conductor>();
-        _habitatPodConductor.OnScorePrepared += HandleScorePrepared;
+        //_habitatPodConductor = stepwiseHabitatPod.GetComponent<Conductor>();
+        //_habitatPodConductor.OnScorePrepared += HandleScorePrepared;
 
         _prevTag = "";
 
@@ -151,7 +151,7 @@ public class RawInteraction : MonoBehaviour
         oldHoverMatSolarPanel = GameObject.Find("Solar_panel_panel").GetComponent<Renderer>().material;
         oldHoverMatGasTank = GameObject.Find("Sphere_cell").GetComponent<Renderer>().material;
         oldHoverRover = GameObject.Find("rover").GetComponent<Renderer>().material;
-        //oldHoverHabitatPod = GameObject.Find()
+        //oldHoverHabitatPod = GameObject.Find("Base_right").GetComponent<Renderer>().material;
 
         sceneA_original = Resources.Load<Sprite>("scene-a");
         sceneB_original = Resources.Load<Sprite>("scene-b");
@@ -263,6 +263,14 @@ public class RawInteraction : MonoBehaviour
                     }
                 }
             }
+            /*
+            if(t.gameObject.tag == "HabitatPod")
+            {
+                GameObject.Find("Base_right").GetComponent<Renderer>().material = outlineMaterial;
+            }
+            */
+            
+
 
             /* if(t.gameObject.tag == "controlCenter")
              {
@@ -336,6 +344,7 @@ public class RawInteraction : MonoBehaviour
             }
             
             GameObject.Find("rover").GetComponent<Renderer>().material = oldHoverRover;
+            //GameObject.Find("Base_right").GetComponent<Renderer>().material = oldHoverHabitatPod;
 
             _scene2.GetComponentInChildren<Image>().color = Color.clear;
             _scene1.GetComponentInChildren<Image>().color = Color.clear;
