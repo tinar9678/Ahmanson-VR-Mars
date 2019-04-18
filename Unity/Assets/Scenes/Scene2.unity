@@ -3911,6 +3911,11 @@ PrefabInstance:
       objectReference: {fileID: 4534020207287294510}
     - target: {fileID: 2573983830300719331, guid: f08fa2e4ba1014703ae7f8d7558430cd,
         type: 3}
+      propertyPath: _credits
+      value: 
+      objectReference: {fileID: 6505769948432653318}
+    - target: {fileID: 2573983830300719331, guid: f08fa2e4ba1014703ae7f8d7558430cd,
+        type: 3}
       propertyPath: rightHand
       value: 
       objectReference: {fileID: 186344594}
@@ -3944,11 +3949,16 @@ PrefabInstance:
       propertyPath: _satelliteArrow
       value: 
       objectReference: {fileID: 1041595829}
-    - target: {fileID: 2573983830300719331, guid: f08fa2e4ba1014703ae7f8d7558430cd,
+    - target: {fileID: 1436238037640365653, guid: f08fa2e4ba1014703ae7f8d7558430cd,
         type: 3}
-      propertyPath: _credits
+      propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 6505769948432653318}
+      objectReference: {fileID: 9100000, guid: d060bf74380c941bfa13191e84154f1a, type: 2}
+    - target: {fileID: 1436238037317042267, guid: f08fa2e4ba1014703ae7f8d7558430cd,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d060bf74380c941bfa13191e84154f1a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f08fa2e4ba1014703ae7f8d7558430cd, type: 3}
 --- !u!114 &2573983830300719331 stripped
