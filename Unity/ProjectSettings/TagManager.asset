@@ -18,6 +18,7 @@ TagManager:
   - GasTank
   - Rover
   - Credits
+  - HabitatPod
   layers:
   - Default
   - TransparentFX

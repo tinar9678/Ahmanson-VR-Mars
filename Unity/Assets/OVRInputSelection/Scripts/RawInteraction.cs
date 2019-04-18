@@ -37,7 +37,7 @@ public class RawInteraction : MonoBehaviour
     protected Material oldHoverMatSolarPanel;
     protected Material oldHoverMatGasTank;
     protected Material oldHoverRover;
-    //protected Material oldHoverHabitatPod;
+    protected Material oldHoverMatHabitatPod;
 
     public Material outlineMaterial;
     public Material backIdle;
@@ -65,7 +65,6 @@ public class RawInteraction : MonoBehaviour
     public GameObject rover_Panel;
     //public GameObject habitatPod_Panel;
 
-    //public GameObject controlCenterPanel;
 
     [SerializeField] private Canvas _mainMenuCanvas;
     [SerializeField] private bool _mainMenuActive;
@@ -151,7 +150,7 @@ public class RawInteraction : MonoBehaviour
         oldHoverMatSolarPanel = GameObject.Find("Solar_panel_panel").GetComponent<Renderer>().material;
         oldHoverMatGasTank = GameObject.Find("Sphere_cell").GetComponent<Renderer>().material;
         oldHoverRover = GameObject.Find("rover").GetComponent<Renderer>().material;
-        //oldHoverHabitatPod = GameObject.Find("Base_right").GetComponent<Renderer>().material;
+        oldHoverMatHabitatPod = GameObject.Find("Base_right").GetComponent<Renderer>().material;
 
         sceneA_original = Resources.Load<Sprite>("scene-a");
         sceneB_original = Resources.Load<Sprite>("scene-b");
@@ -263,14 +262,12 @@ public class RawInteraction : MonoBehaviour
                     }
                 }
             }
-            /*
+            
             if(t.gameObject.tag == "HabitatPod")
             {
                 GameObject.Find("Base_right").GetComponent<Renderer>().material = outlineMaterial;
             }
-            */
-            
-
+        
 
             /* if(t.gameObject.tag == "controlCenter")
              {
@@ -344,7 +341,7 @@ public class RawInteraction : MonoBehaviour
             }
             
             GameObject.Find("rover").GetComponent<Renderer>().material = oldHoverRover;
-            //GameObject.Find("Base_right").GetComponent<Renderer>().material = oldHoverHabitatPod;
+            GameObject.Find("Base_right").GetComponent<Renderer>().material = oldHoverMatHabitatPod;
 
             _scene2.GetComponentInChildren<Image>().color = Color.clear;
             _scene1.GetComponentInChildren<Image>().color = Color.clear;

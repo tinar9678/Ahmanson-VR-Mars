@@ -359,7 +359,7 @@ PrefabInstance:
     - target: {fileID: 6483863767807859852, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -35.880955
+      value: -36.256
       objectReference: {fileID: 0}
     - target: {fileID: 6483863767807859852, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
         type: 3}
@@ -404,7 +404,7 @@ PrefabInstance:
     - target: {fileID: 6483863767807859852, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -57.647205
+      value: -57.312
       objectReference: {fileID: 0}
     - target: {fileID: 6483863767807859852, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
         type: 3}
@@ -454,18 +454,98 @@ PrefabInstance:
     - target: {fileID: 6483863767807859852, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.001258485
+      value: 0.00092217344
       objectReference: {fileID: 0}
     - target: {fileID: 6483863767807859852, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.001258485
+      value: 0.00092217344
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483863767807859852, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0009221726
       objectReference: {fileID: 0}
     - target: {fileID: 1136037396198519504, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
         type: 3}
       propertyPath: _cameraRig
       value: 
       objectReference: {fileID: 926936277}
+    - target: {fileID: 7517318589153231458, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3752861
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517318589153231458, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3752861
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517318589153231458, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.3752861
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517318589153231458, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517318589153231458, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 108
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517318589153231458, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 464
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517318589153231458, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517318589153231458, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367441296209615361, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_Text
+      value: Terraforming Mars
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367441296209615361, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367441296209615361, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367441296209615361, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367441296209615361, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367441296209615361, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 142
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367441296209615361, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 145
+      objectReference: {fileID: 0}
     - target: {fileID: 5053304415230878080, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
         type: 3}
       propertyPath: m_IsActive
