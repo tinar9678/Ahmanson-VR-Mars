@@ -54,7 +54,7 @@ public class RawInteraction : MonoBehaviour
     public GameObject stepwiseSolarPanel;
     public GameObject stepwiseRover;
     public GameObject stepwiseGasTanks;
-    //public GameObject stepwiseHabitatPod;
+    public GameObject stepwiseHabitatPod;
 
     public GameObject agroPodPanel;
     public GameObject astronautPanel;
@@ -63,7 +63,7 @@ public class RawInteraction : MonoBehaviour
     public GameObject solarPanel_Panel;
     public GameObject gasTanks_Panel;
     public GameObject rover_Panel;
-    //public GameObject habitatPod_Panel;
+    public GameObject habitatPod_Panel;
 
 
     [SerializeField] private Canvas _mainMenuCanvas;
@@ -80,7 +80,7 @@ public class RawInteraction : MonoBehaviour
     private Conductor _rocketConductor;
     private Conductor _satelliteConductor;
     private Conductor _solarPanelConductor;
-    //private Conductor _habitatPodConductor;
+    private Conductor _habitatPodConductor;
     private bool panelActive;
 
     public GameObject rightHand;
@@ -136,8 +136,8 @@ public class RawInteraction : MonoBehaviour
         _gasTanksConductor = stepwiseGasTanks.GetComponent<Conductor>();
         _gasTanksConductor.OnScorePrepared += HandleScorePrepared;
 
-        //_habitatPodConductor = stepwiseHabitatPod.GetComponent<Conductor>();
-        //_habitatPodConductor.OnScorePrepared += HandleScorePrepared;
+        _habitatPodConductor = stepwiseHabitatPod.GetComponent<Conductor>();
+        _habitatPodConductor.OnScorePrepared += HandleScorePrepared;
 
         _prevTag = "";
 
@@ -425,6 +425,14 @@ public class RawInteraction : MonoBehaviour
             yield return 0;
             _roverConductor.NextStep();
         }
+        else if (selectedTag == "HabitatPod")
+        {
+            Debug.Log("DelayedResetAndNextStep: HabitatPod");
+            yield return 0;
+            _roverConductor.Reset();
+            yield return 0;
+            _roverConductor.NextStep();
+        }
     }
 
     private IEnumerator DelayedReset()
@@ -629,11 +637,32 @@ public class RawInteraction : MonoBehaviour
                 }
 
 
-                Debug.Log("control center panel being activated");
+                Debug.Log("gas tanks panel being activated");
 
                 _prevPanel = gasTanks_Panel;
                 _prevStepwise = stepwiseGasTanks;
                 _gasTankArrow.SetActive(false);
+            }
+            else if (selectedTag == "HabitatPod")
+            {
+                panelActive = true;
+                if (!habitatPod_Panel.activeInHierarchy)
+                {
+                    Debug.Log("SolarPanel not active");
+                    DeactivatePanel(selectedTag);
+                    habitatPod_Panel.SetActive(true);
+                    StartCoroutine(DelayedResetAndNextStep());
+                }
+                else
+                {
+                    Debug.Log("habitatPod panel already active: next step");
+                    _habitatPodConductor.NextStep();
+                }
+
+                _prevPanel = habitatPod_Panel;
+                _prevStepwise = stepwiseHabitatPod;
+                //Deactivate habitatPod arrow 
+                //_solarPanelArrow.SetActive(false);
             }
             else if (selectedTag == "Scene1")
             {
