@@ -217,6 +217,11 @@ public class RawInteraction : MonoBehaviour
         if(OVRInput.GetDown(OVRInput.Button.One))
         {
             Debug.Log("A pressed!!");
+            if (bButtonOverlay.activeInHierarchy)
+            {
+                bButtonOverlay.SetActive(false);
+            }
+
             _mainMenuCanvas.gameObject.SetActive(!_mainMenuActive);
             _mainMenuActive = !_mainMenuActive;
         }
