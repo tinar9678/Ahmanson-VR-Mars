@@ -29,13 +29,10 @@ public class RawInteraction2300 : MonoBehaviour
 {
     protected Material oldHoverMat;
     public Material yellowMat;
-    protected Material oldHoverMatOuter;
-    protected Material oldHoverMatInner;
-    //protected Material oldHoverMatControlCenter;
     protected Material oldHoverMatRocket;
     protected Material oldHoverMatSatellite;
     protected Material oldHoverMatMoss;
-    protected Material oldHoverMatLivingPod;
+//    protected Material oldHoverMatLivingPod;
 
     public Material outlineMaterial;
     public Material backIdle;
@@ -47,11 +44,11 @@ public class RawInteraction2300 : MonoBehaviour
     //public GameObject cube;
     public bool hovering;
     public GameObject _stepwiseRocket;
-    public GameObject _stepwiseMoss;
+//    public GameObject _stepwiseMoss;
     public GameObject _stepwiseSatellite;
     public GameObject _stepwiseLivingPod;
 
-    public GameObject _mossPanel;
+//    public GameObject _mossPanel;
     public GameObject _livingPodPanel;
     public GameObject _rocketPanel;
     public GameObject satellitePanel;
@@ -67,7 +64,7 @@ public class RawInteraction2300 : MonoBehaviour
 
     private Conductor _livingPodConductor;
     private Conductor _satelliteConductor;
-    private Conductor _mossConductor;
+//    private Conductor _mossConductor;
     private Conductor _rocketConductor;
     private bool panelActive;
 
@@ -75,12 +72,6 @@ public class RawInteraction2300 : MonoBehaviour
     //private bool triggerPressed;
     bool bDownRight;
     
-
-    public Camera auxCamera;
-    private float speed;
-    private float x;
-    private float y;
-
     private GameObject _prevPanel;
     private GameObject _prevStepwise;
     private string _prevTag;
@@ -93,7 +84,7 @@ public class RawInteraction2300 : MonoBehaviour
     Sprite sceneB_original;
     Sprite credits_original;
 
-    [SerializeField] private GameObject _mossArrow;
+//    [SerializeField] private GameObject _mossArrow;
     [SerializeField] private GameObject _livingPodArrow;
     [SerializeField] private GameObject _rocketArrow;
     [SerializeField] private GameObject _satelliteArrow;
@@ -113,20 +104,17 @@ public class RawInteraction2300 : MonoBehaviour
         _satelliteConductor = _stepwiseSatellite.GetComponent<Conductor>();
         _satelliteConductor.OnScorePrepared += HandleScorePrepared;
 
-        _mossConductor = _mossPanel.GetComponent<Conductor>();
-        _mossConductor.OnScorePrepared += HandleScorePrepared;
+//        _mossConductor = _mossPanel.GetComponent<Conductor>();
+//        _mossConductor.OnScorePrepared += HandleScorePrepared;
 
 
         _prevTag = "";
 
-        oldHoverMatOuter = GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material;
-        oldHoverMatInner = GameObject.Find("Agro_propilen002").GetComponent<Renderer>().material;
-
         //oldHoverMatControlCenter = GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material;
         oldHoverMatRocket = GameObject.Find("RocketTop").GetComponent<Renderer>().material;
-        oldHoverMatSatellite = GameObject.Find("Satelite_plate").GetComponent<Renderer>().material;
+        oldHoverMatSatellite = GameObject.Find("C_Misk_Aerial").GetComponent<Renderer>().material;
         oldHoverMatMoss = GameObject.Find("Solar_panel_panel").GetComponent<Renderer>().material;
-        oldHoverMatLivingPod = GameObject.Find("Sphere_cell").GetComponent<Renderer>().material;
+//        oldHoverMatLivingPod = GameObject.Find("Sphere_cell").GetComponent<Renderer>().material;
 
         sceneA_original = Resources.Load<Sprite>("scene-a");
         sceneB_original = Resources.Load<Sprite>("scene-b");
@@ -139,9 +127,6 @@ public class RawInteraction2300 : MonoBehaviour
         bDownRight = OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
         panelActive = false;
         hovering = false;
-        speed = -2f;
-        x = 17;
-        y = 0;
         _mainMenuActive = false;
 
     }
@@ -168,9 +153,6 @@ public class RawInteraction2300 : MonoBehaviour
 
     public void Update()
     {
-        y += speed * Time.deltaTime;
-       //auxCamera.transform.Rotate(0, speed * Time.deltaTime, 0);
-       auxCamera.transform.rotation = Quaternion.Euler(x, y, 0);
 
         if(OVRInput.GetDown(OVRInput.Button.One))
         {
@@ -193,62 +175,22 @@ public class RawInteraction2300 : MonoBehaviour
             selectedTag = t.gameObject.tag;
             Debug.Log("hovered tag is: " + selectedTag);
 
-            //oldHoverMat = t.gameObject.GetComponent<Renderer>().material;
-            //t.gameObject.GetComponent<Renderer>().material = yellowMat;
-            if(t.gameObject.tag == "agroPod")
-            {
-                
-                GameObject.Find("Agro_propilen002").GetComponent<Renderer>().material = outlineMaterial;
-                GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material = outlineMaterial;
-            }
 
             if (t.gameObject.tag == "rocket")
             {
                 GameObject.Find("RocketTop").GetComponent<Renderer>().material = outlineMaterial;       
             }
-
-            if (t.gameObject.tag == "Rover")
-            {
-                GameObject.Find("rover").GetComponent<Renderer>().material = outlineMaterial;
-            }
-
+            
             if (t.gameObject.tag == "satellite")
             {
-                GameObject.Find("Satelite_plate").GetComponent<Renderer>().material = outlineMaterial;
-            }
-
-            if (t.gameObject.tag == "solarPanel")
-            {
-                foreach(GameObject solarPanel in GameObject.FindGameObjectsWithTag("solarPanel"))
+                foreach(GameObject solarPanel in GameObject.FindGameObjectsWithTag("satellite"))
                 {
-                    if(solarPanel.name == "Solar_panel_panel")
+                    if(solarPanel.name == "C_Misk_Aerial")
                     {
                         solarPanel.GetComponent<Renderer>().material = outlineMaterial;
                     }
                 } 
             }
-           
-            if (t.gameObject.tag == "GasTank")
-            {
-                foreach (GameObject gasTank in GameObject.FindGameObjectsWithTag("GasTank"))
-                {
-                    if (gasTank.name == "Sphere_cell")
-                    {
-                        gasTank.GetComponent<Renderer>().material = outlineMaterial;
-                    }
-                }
-            }
-            
-            if(t.gameObject.tag == "HabitatPod")
-            {
-                GameObject.Find("Base_right").GetComponent<Renderer>().material = outlineMaterial;
-            }
-        
-
-            /* if(t.gameObject.tag == "controlCenter")
-             {
-                 GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material = outlineMaterial;
-             }*/
 
             if (t.gameObject.tag == "Scene1")
             {
@@ -292,32 +234,16 @@ public class RawInteraction2300 : MonoBehaviour
         else
         {
 
-            //t.gameObject.GetComponent<Renderer>().material = oldHoverMat;
-            GameObject.Find("Agro_propilen002").GetComponent<Renderer>().material = oldHoverMatInner;
-            GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material = oldHoverMatOuter;
-
-            // GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material = oldHoverMatControlCenter;
             GameObject.Find("RocketTop").GetComponent<Renderer>().material = oldHoverMatRocket;
-            GameObject.Find("Satelite_plate").GetComponent<Renderer>().material = oldHoverMatSatellite;
+//            GameObject.Find("Satelite_plate").GetComponent<Renderer>().material = oldHoverMatMoss;
             //GameObject.Find("Solar_panel_panel").GetComponent<Renderer>().material = oldHoverMatSolarPanel;
             foreach (GameObject satellite in GameObject.FindGameObjectsWithTag("satellite"))
             {
-                if (satellite.name == "Satellite_panel")
+                if (satellite.name == "C_Misk_Aerial")
                 {
                     satellite.GetComponent<Renderer>().material = oldHoverMatSatellite;
                 }
             }
-
-            foreach (GameObject gasTank in GameObject.FindGameObjectsWithTag("GasTank"))
-            {
-                if (gasTank.name == "Sphere_cell")
-                {
-                    gasTank.GetComponent<Renderer>().material = oldHoverMatGasTank;
-                }
-            }
-            
-            GameObject.Find("rover").GetComponent<Renderer>().material = oldHoverRover;
-            GameObject.Find("Base_right").GetComponent<Renderer>().material = oldHoverMatHabitatPod;
 
             _scene2.GetComponentInChildren<Image>().color = Color.clear;
             _scene1.GetComponentInChildren<Image>().color = Color.clear;
@@ -356,14 +282,7 @@ public class RawInteraction2300 : MonoBehaviour
 
     private IEnumerator DelayedResetAndNextStep()
     {
-        if (selectedTag == "agroPod")
-        {
-            Debug.Log("DelayedResetAndNextStep: Agropod");
-            yield return 0;
-            _agroPodConductor.Reset();
-            yield return 0;
-            _agroPodConductor.NextStep();
-        } else if (selectedTag == "rocket")
+        if (selectedTag == "rocket")
         {
             Debug.Log("DelayedResetAndNextStep: Rocket");
             yield return 0;
@@ -377,72 +296,22 @@ public class RawInteraction2300 : MonoBehaviour
             _satelliteConductor.Reset();
             yield return 0;
             _satelliteConductor.NextStep();
-        } else if (selectedTag == "solarPanel")
+        } else if (selectedTag == "LivingPod")
         {
             Debug.Log("DelayedResetAndNextStep: SolarPanel");
             yield return 0;
-            _solarPanelConductor.Reset();
+            _livingPodConductor.Reset();
             yield return 0;
-            _solarPanelConductor.NextStep();
+            _livingPodConductor.NextStep();
         }
-        else if (selectedTag == "GasTank")
-        {
-            Debug.Log("DelayedResetAndNextStep: Gas Tank");
-            yield return 0;
-            _gasTanksConductor.Reset();
-            yield return 0;
-            _gasTanksConductor.NextStep();
-        }
-        else if (selectedTag == "Rover")
-        {
-            Debug.Log("DelayedResetAndNextStep: Rover");
-            yield return 0;
-            _roverConductor.Reset();
-            yield return 0;
-            _roverConductor.NextStep();
-        }
-        else if (selectedTag == "HabitatPod")
-        {
-            Debug.Log("DelayedResetAndNextStep: HabitatPod");
-            yield return 0;
-            _roverConductor.Reset();
-            yield return 0;
-            _roverConductor.NextStep();
-        }
-    }
-
-    private IEnumerator DelayedReset()
-    {
-   
-        if (selectedTag == "agroPod")
-        {
-            yield return 0;
-            _agroPodConductor.Reset();
-          
-        }
-        /*else if (selectedTag == "controlCenter")
-        {
-            yield return 0;
-            _controlCenterConductor.Reset();
-          
-        }*/
-    }
-
-    private IEnumerator DelayedNextStep()
-    {
-
-        if (selectedTag == "agroPod")
-        {
-            yield return 0;
-            _agroPodConductor.NextStep();
-
-        }
-       /* else if (selectedTag == "controlCenter")
-        {
-            yield return 0;
-            _controlCenterConductor.NextStep();
-
-        }*/
+//        else if (selectedTag == "Moss")
+//        {
+//            Debug.Log("DelayedResetAndNextStep: Gas Tank");
+//            yield return 0;
+//            _mossConductor.Reset();
+//            yield return 0;
+//            _mossConductor.NextStep();
+//        }
     }
 
     public void OnSelected(Transform t)
@@ -466,43 +335,7 @@ public class RawInteraction2300 : MonoBehaviour
             {
 
             }
-            //activate the stepwise panel for selected object
-            if (selectedTag == "agroPod")
-            {
-                //stepwiseAgroPod.SetActive(true);
-                //_conductor = stepwiseAgroPod.GetComponent<Conductor>();
-
-                //Pseudocode
-                /*if (panel isn’t active) {
-                    make panel active
-                    DelayedReset
-                }
-                DelayedNextStep
-                */
-                panelActive = true;
-                if (!agroPodPanel.activeInHierarchy)
-                {
-                    Debug.Log("Not active");
-                    DeactivatePanel(selectedTag);
-                    agroPodPanel.SetActive(true);
-                    StartCoroutine(DelayedResetAndNextStep());
-                }
-                else
-                {
-                    Debug.Log("Agro pod panel already active: next step");
-                    _agroPodConductor.NextStep();
-                }
-
-
-                _prevPanel = agroPodPanel;
-                _prevStepwise = stepwiseAgroPod;
-                _agroPodArrow.SetActive(false);
-
-                //child the panel to the right controller
-                //agroPodPanel.transform.SetParent(rightHand.transform);
-
-            }
-            else if (selectedTag == "rocket")
+            if (selectedTag == "rocket")
             {
                 panelActive = true;
                 if (!_rocketPanel.activeInHierarchy)
@@ -544,6 +377,47 @@ public class RawInteraction2300 : MonoBehaviour
                 //_controlCenterArrow.SetActive(false);
                 _satelliteArrow.SetActive(false);
             }
+            else if (selectedTag == "LivingPod")
+            {
+                panelActive = true;
+                if (!_livingPodPanel.activeInHierarchy)
+                {
+                    Debug.Log("LivingPod not active");
+                    DeactivatePanel(selectedTag);
+                    _livingPodPanel.SetActive(true);
+                    StartCoroutine(DelayedResetAndNextStep());
+                }
+                else
+                {
+                    Debug.Log("LivingPod panel already active: next step");
+                    _livingPodConductor.NextStep();
+                }
+
+                _prevPanel = _livingPodPanel;
+                _prevStepwise = _stepwiseLivingPod;
+                _livingPodArrow.SetActive(false);
+            }
+//            else if (selectedTag == "Moss")
+//            {
+//                panelActive = true;
+//                if (!_mossPanel.activeInHierarchy)
+//                {
+//                    Debug.Log("SolarPanel not active");
+//                    DeactivatePanel(selectedTag);
+//                    _mossPanel.SetActive(true);
+//                    StartCoroutine(DelayedResetAndNextStep());
+//                }
+//                else
+//                {
+//                    Debug.Log("habitatPod panel already active: next step");
+//                    _mossConductor.NextStep();
+//                }
+//
+//                _prevPanel = _mossPanel;
+//                _prevStepwise = _stepwiseMoss;
+//                //Deactivate habitatPod arrow 
+//                //_solarPanelArrow.SetActive(false);
+//            }
             else if (selectedTag == "Scene1")
             {
                 
