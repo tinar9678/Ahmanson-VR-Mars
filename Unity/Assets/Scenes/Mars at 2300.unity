@@ -1276,6 +1276,48 @@ PrefabInstance:
       objectReference: {fileID: 926936277}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee04e6e0d9ef2e14daac2a5959cf811c, type: 3}
+--- !u!223 &1440390296 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 2520753507609871019, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1440390295}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1440390297 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6003659803118834888, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1440390295}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1440390298 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4031980467728192224, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1440390295}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1440390299 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4338519805824808482, guid: ee04e6e0d9ef2e14daac2a5959cf811c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1440390295}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1523841365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1758,6 +1800,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9203509790781181551, guid: a701c3a44e9029d48ade410db30ffe9b,
+        type: 3}
+      propertyPath: _mainMenuCanvas
+      value: 
+      objectReference: {fileID: 1440390296}
+    - target: {fileID: 9203509790781181551, guid: a701c3a44e9029d48ade410db30ffe9b,
+        type: 3}
+      propertyPath: _scene1
+      value: 
+      objectReference: {fileID: 1440390299}
+    - target: {fileID: 9203509790781181551, guid: a701c3a44e9029d48ade410db30ffe9b,
+        type: 3}
+      propertyPath: _scene2
+      value: 
+      objectReference: {fileID: 1440390298}
+    - target: {fileID: 9203509790781181551, guid: a701c3a44e9029d48ade410db30ffe9b,
+        type: 3}
+      propertyPath: _credits
+      value: 
+      objectReference: {fileID: 1440390297}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a701c3a44e9029d48ade410db30ffe9b, type: 3}
 --- !u!1001 &7780881215922537816
