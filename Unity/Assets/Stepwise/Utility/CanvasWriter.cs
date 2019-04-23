@@ -33,7 +33,7 @@ public class CanvasWriter : MonoBehaviour
 		if (conductor != null) {
 			conductor.OnStepExecuted += HandleStepExecuted;
 			conductor.OnScoreLoading += HandleScoreLoading;
-			conductor.OnScorePrepared += HandleScorePrepared;
+		    conductor.OnScorePrepared += HandleScorePrepared;
             conductor.OnScoreReset += HandleScoreReset;
 		}
 		CreateStageBackground ();
@@ -94,7 +94,7 @@ public class CanvasWriter : MonoBehaviour
 	{
 		Debug.Log ("score prepared");
 		_scoreIsPrepared = true;
-	}
+    }
 
     private void HandleScoreReset(Score score)
     {
@@ -108,7 +108,7 @@ public class CanvasWriter : MonoBehaviour
 
     private void HandleStepExecuted (Step step)
 	{
-		Debug.Log(step.command+" "+step.target+" "+step.content);
+		//Debug.Log(step.command+" "+step.target+" "+step.content);
         if (canvas.isActiveAndEnabled)
         {
             Character character = step.target as Character;
@@ -258,6 +258,15 @@ public class CanvasWriter : MonoBehaviour
                         if (float.TryParse(step.content, out floatValue))
                         {
                             panel.SetImageTransition(floatValue);
+                        }
+                        break;
+                    case "setbackgroundsize":
+                        if (step.content == "cover")
+                        {
+                            panel.SetBackgroundSize(BackgroundSize.Cover);
+                        } else if (step.content == "contain")
+                        {
+                            panel.SetBackgroundSize(BackgroundSize.Contain);
                         }
                         break;
                 }
@@ -473,7 +482,7 @@ public class CanvasWriter : MonoBehaviour
 
     private void ClearCanvas()
     {
-        if(visibleCharacters != null)
+        if (visibleCharacters != null)
         {
             int n = visibleCharacters.Count;
             for (int i = 0; i < n; i++)
@@ -482,7 +491,6 @@ public class CanvasWriter : MonoBehaviour
             }
             _panels.Clear();
         }
-
     }
 
     private void SetStageBackgroundColor(Color color)

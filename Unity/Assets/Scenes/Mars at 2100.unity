@@ -415,8 +415,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148482059}
   m_LocalRotation: {x: -0, y: -0.9981251, z: -0, w: 0.06120736}
-  m_LocalPosition: {x: 0, y: 0, z: 41.33}
-  m_LocalScale: {x: 0.009328891, y: 0.009328891, z: 0.009328891}
+  m_LocalPosition: {x: 0, y: 0, z: 40.48}
+  m_LocalScale: {x: 0.0059678783, y: 0.0059678783, z: 0.0059678783}
   m_Children:
   - {fileID: 1958669640}
   m_Father: {fileID: 0}
@@ -424,7 +424,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -172.98201, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 91.5, y: 6.21}
+  m_AnchoredPosition: {x: 91.4, y: 6.25}
   m_SizeDelta: {x: 1303.8, y: 795.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &186344594 stripped
@@ -3499,6 +3499,7 @@ Transform:
   - {fileID: 1113512811}
   - {fileID: 287976590}
   - {fileID: 838429119}
+  - {fileID: 1697695926}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3686,6 +3687,82 @@ RectTransform:
   m_AnchoredPosition: {x: 13.4, y: 22.4}
   m_SizeDelta: {x: 1303.8, y: 795.5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1697695925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1697695926}
+  - component: {fileID: 1697695929}
+  - component: {fileID: 1697695928}
+  - component: {fileID: 1697695927}
+  m_Layer: 0
+  m_Name: Stepwise_InstructionMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1697695926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697695925}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -19.98555, y: 6.020319, z: 0.3625412}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1622426590}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1697695927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697695925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 938330dbd9a3040ba94743df867f05ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conductor: {fileID: 1697695929}
+  canvas: {fileID: 148482067}
+  grid: {x: 0, y: 0}
+  unitSize: {x: 0, y: 0}
+--- !u!114 &1697695928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697695925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e959af80fe5441f28400a071852079c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sheetsURL: https://docs.google.com/spreadsheets/d/1eXJ25yXRhZPlXJMsXQ7-O0Ab1iZZqs_Ta2pBGNA3BH8/edit#gid=0
+  outputXML: 
+--- !u!114 &1697695929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697695925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54a2e0cca1ef4cf7b1372fe3a09e9bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataFile: {fileID: 0}
 --- !u!1001 &1711471726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4818,12 +4895,17 @@ PrefabInstance:
         type: 3}
       propertyPath: _instructionMenuCanvas
       value: 
-      objectReference: {fileID: 148482067}
+      objectReference: {fileID: 148482059}
     - target: {fileID: 2573983830300719331, guid: f08fa2e4ba1014703ae7f8d7558430cd,
         type: 3}
       propertyPath: bButtonOverlay
       value: 
       objectReference: {fileID: 68829386}
+    - target: {fileID: 2573983830300719331, guid: f08fa2e4ba1014703ae7f8d7558430cd,
+        type: 3}
+      propertyPath: stepwiseInstructionMenu
+      value: 
+      objectReference: {fileID: 1697695925}
     - target: {fileID: 1436238037640365653, guid: f08fa2e4ba1014703ae7f8d7558430cd,
         type: 3}
       propertyPath: m_Controller

@@ -55,6 +55,7 @@ public class RawInteraction : MonoBehaviour
     public GameObject stepwiseRover;
     public GameObject stepwiseGasTanks;
     public GameObject stepwiseHabitatPod;
+    public GameObject stepwiseInstructionMenu;
 
     public GameObject agroPodPanel;
     public GameObject astronautPanel;
@@ -65,7 +66,7 @@ public class RawInteraction : MonoBehaviour
     public GameObject rover_Panel;
     public GameObject habitatPod_Panel;
 
-    [SerializeField] private Canvas _instructionMenuCanvas;
+    [SerializeField] private GameObject _instructionMenuCanvas;
     [SerializeField] private bool _instructionMenuActive;
     [SerializeField] private float timeLeft;
     [SerializeField] private GameObject bButtonOverlay;
@@ -85,6 +86,7 @@ public class RawInteraction : MonoBehaviour
     private Conductor _satelliteConductor;
     private Conductor _solarPanelConductor;
     private Conductor _habitatPodConductor;
+    private Conductor _instructionMenuConductor;
     private bool panelActive;
 
     public GameObject rightHand;
@@ -143,6 +145,9 @@ public class RawInteraction : MonoBehaviour
         _habitatPodConductor = stepwiseHabitatPod.GetComponent<Conductor>();
         _habitatPodConductor.OnScorePrepared += HandleScorePrepared;
 
+        _instructionMenuConductor = stepwiseInstructionMenu.GetComponent<Conductor>();
+        _instructionMenuConductor.OnScorePrepared += HandleScorePrepared;
+
         _prevTag = "";
 
         oldHoverMatOuter = GameObject.Find("Agro_block_outside002").GetComponent<Renderer>().material;
@@ -170,7 +175,7 @@ public class RawInteraction : MonoBehaviour
         speed = -2f;
         x = 17;
         y = 0;
-        timeLeft = 8f;
+        timeLeft = 6f;
 
         _mainMenuActive = false;
         _instructionMenuActive = false;
@@ -218,8 +223,13 @@ public class RawInteraction : MonoBehaviour
 
         if (OVRInput.GetDown(OVRInput.Button.Two))
         {
+        
             Debug.Log("Interaction menu raw interaction B button pressed!!");
-            _instructionMenuCanvas.gameObject.SetActive(!_instructionMenuActive);
+            if (bButtonOverlay.activeInHierarchy)
+            {
+                bButtonOverlay.SetActive(false);
+            }
+            _instructionMenuCanvas.SetActive(!_instructionMenuActive);
             _instructionMenuActive = !_instructionMenuActive;
         }
     }
@@ -453,6 +463,14 @@ public class RawInteraction : MonoBehaviour
             yield return 0;
             _roverConductor.NextStep();
         }
+        else if(selectedTag == "InstructionMenu")
+        {
+            Debug.Log("DelayedResetAndNextStep: InstructionMenu");
+            yield return 0;
+            _instructionMenuConductor.Reset();
+            yield return 0;
+            _instructionMenuConductor.NextStep();
+        }
     }
 
     private IEnumerator DelayedReset()
@@ -677,6 +695,27 @@ public class RawInteraction : MonoBehaviour
                 {
                     Debug.Log("habitatPod panel already active: next step");
                     _habitatPodConductor.NextStep();
+                }
+
+                _prevPanel = habitatPod_Panel;
+                _prevStepwise = stepwiseHabitatPod;
+                //Deactivate habitatPod arrow 
+                //_solarPanelArrow.SetActive(false);
+            }
+            else if (selectedTag == "InstructionMenu")
+            {
+                panelActive = true;
+                if (!_instructionMenuCanvas.activeInHierarchy)
+                {
+                    Debug.Log("Instruction menu not active");
+                    DeactivatePanel(selectedTag);
+                    _instructionMenuCanvas.SetActive(true);
+                    StartCoroutine(DelayedResetAndNextStep());
+                }
+                else
+                {
+                    Debug.Log("Instruction Menu panel already active: next step");
+                    _instructionMenuConductor.NextStep();
                 }
 
                 _prevPanel = habitatPod_Panel;
