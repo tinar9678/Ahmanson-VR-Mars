@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DemoMarsScene.unity
+    path: Assets/Scenes/Mars at 2300.unity
     guid: 94db2890f55d349aa8e331d07b46fe9c
   - enabled: 1
-    path: Assets/Scenes/Scene2.unity
+    path: Assets/Scenes/Mars at 2100.unity
     guid: 384974ad60770fd4c84026ed2e0b324d
   - enabled: 1
     path: Assets/Scenes/CreditsScene.unity
