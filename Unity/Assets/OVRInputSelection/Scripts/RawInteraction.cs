@@ -65,6 +65,10 @@ public class RawInteraction : MonoBehaviour
     public GameObject rover_Panel;
     public GameObject habitatPod_Panel;
 
+    [SerializeField] private Canvas _instructionMenuCanvas;
+    [SerializeField] private bool _instructionMenuActive;
+    [SerializeField] private float timeLeft;
+    [SerializeField] private GameObject bButtonOverlay;
 
     [SerializeField] private Canvas _mainMenuCanvas;
     [SerializeField] private bool _mainMenuActive;
@@ -166,7 +170,10 @@ public class RawInteraction : MonoBehaviour
         speed = -2f;
         x = 17;
         y = 0;
+        timeLeft = 8f;
+
         _mainMenuActive = false;
+        _instructionMenuActive = false;
 
     }
 
@@ -192,6 +199,12 @@ public class RawInteraction : MonoBehaviour
 
     public void Update()
     {
+        timeLeft -= Time.deltaTime;
+        if(timeLeft < 0)
+        {
+            bButtonOverlay.SetActive(false);
+        }
+
         y += speed * Time.deltaTime;
        //auxCamera.transform.Rotate(0, speed * Time.deltaTime, 0);
        auxCamera.transform.rotation = Quaternion.Euler(x, y, 0);
@@ -201,6 +214,13 @@ public class RawInteraction : MonoBehaviour
             Debug.Log("A pressed!!");
             _mainMenuCanvas.gameObject.SetActive(!_mainMenuActive);
             _mainMenuActive = !_mainMenuActive;
+        }
+
+        if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            Debug.Log("Interaction menu raw interaction B button pressed!!");
+            _instructionMenuCanvas.gameObject.SetActive(!_instructionMenuActive);
+            _instructionMenuActive = !_instructionMenuActive;
         }
     }
 
@@ -703,6 +723,12 @@ public class RawInteraction : MonoBehaviour
                 {
                     _mainMenuActive = !_mainMenuActive;
                 }
+
+                if (t.parent.gameObject.tag == "InstructionMenu")
+                {
+                    _instructionMenuActive = !_instructionMenuActive;
+                }
+
                 t.parent.gameObject.SetActive(false);
             }
          

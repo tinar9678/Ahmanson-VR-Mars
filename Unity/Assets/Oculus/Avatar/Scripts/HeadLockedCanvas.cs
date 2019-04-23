@@ -18,7 +18,7 @@ public class HeadLockedCanvas : MonoBehaviour
             transform.position,
             _cameraRig.transform.position + _cameraRig.transform.rotation * new Vector3(0, 0, _distance),
             ref _velocity,
-            _smoothTime);
+            _smoothTime); 
 
         transform.rotation = SmoothDampQuaternion(
             transform.rotation,
