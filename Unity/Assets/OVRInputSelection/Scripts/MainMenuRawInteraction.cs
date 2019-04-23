@@ -59,6 +59,10 @@ public class MainMenuRawInteraction : MonoBehaviour
     private Conductor _satelliteConductor;
     private Conductor _solarPanelConductor;
 
+    public GameObject stepwiseCredits;
+
+    private Conductor _creditsConductor;
+
 
     private bool panelActive;
 
@@ -85,6 +89,9 @@ public class MainMenuRawInteraction : MonoBehaviour
         sceneB_Hilite = Resources.Load<Sprite>("scene-b-hilite");
         credits_Hilite = Resources.Load<Sprite>("scene-c-hilite");
 
+        _creditsConductor = stepwiseCredits.GetComponent<Conductor>();
+        _creditsConductor.OnScorePrepared += HandleScorePrepared;
+
     }
 
     private IEnumerator AutoStart()
@@ -109,6 +116,12 @@ public class MainMenuRawInteraction : MonoBehaviour
             _mainMenuCanvas.gameObject.SetActive(!_mainMenuActive);
             _mainMenuActive = !_mainMenuActive;
         }
+    }
+
+    private void HandleScorePrepared(Score score)
+    {
+        Debug.Log("score prepared:" + score);
+        //StartCoroutine(AutoStart());
     }
 
     public void OnHoverEnter(Transform t)
@@ -189,7 +202,14 @@ public class MainMenuRawInteraction : MonoBehaviour
 
         Debug.Log("selected tag is: " + selectedTag);
 
-        if (selectedTag == "Scene1")
+        if (selectedTag == "CreditsPanel")
+        {
+          
+                Debug.Log("Instruction Menu panel already active: next step");
+                _creditsConductor.NextStep();
+          
+        }
+        else if (selectedTag == "Scene1")
         {
             Debug.Log("Active scene: " + SceneManager.GetActiveScene().name);
             if (SceneManager.GetActiveScene().name != "DemoMarsScene")
