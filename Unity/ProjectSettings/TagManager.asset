@@ -21,7 +21,13 @@ TagManager:
   - HabitatPod
   - InstructionMenu
   - Elevator2
+<<<<<<< HEAD
   - CreditsPanel
+=======
+  - MossColor
+  - NewSatelliteColor
+  - LivingPod
+>>>>>>> 8cc3ce4b1930ec0b57faacc0fd6a5287394769ac
   layers:
   - Default
   - TransparentFX
