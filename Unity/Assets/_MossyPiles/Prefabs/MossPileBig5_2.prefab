@@ -89,9 +89,10 @@ GameObject:
   - component: {fileID: 33140581031674864}
   - component: {fileID: 23789032233421196}
   - component: {fileID: 64590040627995774}
+  - component: {fileID: 8908933108245218080}
   m_Layer: 0
   m_Name: MossPileBig5_2
-  m_TagString: Untagged
+  m_TagString: Moss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +106,7 @@ Transform:
   m_GameObject: {fileID: 1204026376240920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 167.876, y: 24.392, z: 82.618}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 25.201305, y: 25.20131, z: 25.201305}
   m_Children:
   - {fileID: 4522802278647676}
   m_Father: {fileID: 0}
@@ -170,3 +171,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: afdc79de826286941995587494a2a321, type: 3}
+--- !u!65 &8908933108245218080
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204026376240920}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0086944, y: 0.08676798, z: 1.7953639}
+  m_Center: {x: 0.0000000018264166, y: 0.060618754, z: 0.00000014900455}

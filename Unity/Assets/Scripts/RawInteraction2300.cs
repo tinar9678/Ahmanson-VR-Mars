@@ -32,7 +32,7 @@ public class RawInteraction2300 : MonoBehaviour
     protected Material oldHoverMatRocket;
     protected Material oldHoverMatSatellite;
     protected Material oldHoverMatMoss;
-//    protected Material oldHoverMatLivingPod;
+    protected Material oldHoverMatLivingPod;
 
     public Material outlineMaterial;
     public Material backIdle;
@@ -44,11 +44,11 @@ public class RawInteraction2300 : MonoBehaviour
     //public GameObject cube;
     public bool hovering;
     public GameObject _stepwiseRocket;
-//    public GameObject _stepwiseMoss;
+    public GameObject _stepwiseMoss;
     public GameObject _stepwiseSatellite;
     public GameObject _stepwiseLivingPod;
 
-//    public GameObject _mossPanel;
+    public GameObject _mossPanel;
     public GameObject _livingPodPanel;
     public GameObject _rocketPanel;
     public GameObject satellitePanel;
@@ -60,11 +60,11 @@ public class RawInteraction2300 : MonoBehaviour
     [SerializeField] private Image _scene2;
     [SerializeField] private Image _credits;
 
-    public string selectedTag;
+    private string selectedTag;
 
     private Conductor _livingPodConductor;
     private Conductor _satelliteConductor;
-//    private Conductor _mossConductor;
+    private Conductor _mossConductor;
     private Conductor _rocketConductor;
     private bool panelActive;
 
@@ -84,14 +84,13 @@ public class RawInteraction2300 : MonoBehaviour
     Sprite sceneB_original;
     Sprite credits_original;
 
-//    [SerializeField] private GameObject _mossArrow;
+    [SerializeField] private GameObject _mossIndicatorArrow;
     [SerializeField] private GameObject _livingPodArrow;
     [SerializeField] private GameObject _rocketArrow;
     [SerializeField] private GameObject _satelliteArrow;
 
     void Start()
     {
-       // stepwiseControlCenter.SetActive(true);
         _stepwiseRocket.SetActive(true);
         
         _rocketConductor = _stepwiseRocket.GetComponent<Conductor>();
@@ -104,8 +103,8 @@ public class RawInteraction2300 : MonoBehaviour
         _satelliteConductor = _stepwiseSatellite.GetComponent<Conductor>();
         _satelliteConductor.OnScorePrepared += HandleScorePrepared;
 
-//        _mossConductor = _mossPanel.GetComponent<Conductor>();
-//        _mossConductor.OnScorePrepared += HandleScorePrepared;
+        _mossConductor = _stepwiseMoss.GetComponent<Conductor>();
+        _mossConductor.OnScorePrepared += HandleScorePrepared;
 
 
         _prevTag = "";
@@ -113,8 +112,16 @@ public class RawInteraction2300 : MonoBehaviour
         //oldHoverMatControlCenter = GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material;
         oldHoverMatRocket = GameObject.Find("RocketTop").GetComponent<Renderer>().material;
         oldHoverMatSatellite = GameObject.Find("C_Misk_Aerial").GetComponent<Renderer>().material;
-        oldHoverMatMoss = GameObject.Find("Solar_panel_panel").GetComponent<Renderer>().material;
-//        oldHoverMatLivingPod = GameObject.Find("Sphere_cell").GetComponent<Renderer>().material;
+        oldHoverMatMoss = GameObject.Find("MossPileBig").GetComponent<Renderer>().material;
+        oldHoverMatLivingPod = Resources.Load("C2_Outside_2", typeof(Material)) as Material;
+        //oldHoverMatLivingPod = GameObject.Find("C_Out_Wall_3").GetComponent<Renderer>().material;
+        foreach (GameObject livingpod in GameObject.FindGameObjectsWithTag("LivingPod"))
+        {
+            if (livingpod.name == "C_Out_Wall_3")
+            {
+                livingpod.GetComponent<Renderer>().material = oldHoverMatLivingPod;
+            }
+        }
 
         sceneA_original = Resources.Load<Sprite>("scene-a");
         sceneB_original = Resources.Load<Sprite>("scene-b");
@@ -192,6 +199,28 @@ public class RawInteraction2300 : MonoBehaviour
                 } 
             }
 
+            if (t.gameObject.tag == "LivingPod")
+            {
+                foreach (GameObject livingpod in GameObject.FindGameObjectsWithTag("LivingPod"))
+                {
+                    if (livingpod.name == "C_Out_Wall_3")
+                    {
+                        livingpod.GetComponent<Renderer>().material = outlineMaterial;
+                    }
+                }
+            }
+
+            if (t.gameObject.tag == "Moss")
+            {
+                foreach (GameObject moss in GameObject.FindGameObjectsWithTag("Moss"))
+                {
+                    if (moss.name == "MossPileBig")
+                    {
+                        moss.GetComponent<Renderer>().material = outlineMaterial;
+                    }
+                }
+            }
+
             if (t.gameObject.tag == "Scene1")
             {
                 _scene1.GetComponentInChildren<Image>().color = Color.yellow;
@@ -210,9 +239,7 @@ public class RawInteraction2300 : MonoBehaviour
                 _credits.GetComponentInChildren<Image>().color = Color.yellow;
                 _credits.transform.GetChild(0).GetComponent<Image>().sprite = credits_Hilite;
             }
-
-            //set hovering bool = true;
-
+            
         }
         if (outText != null)
         {
@@ -235,7 +262,7 @@ public class RawInteraction2300 : MonoBehaviour
         {
 
             GameObject.Find("RocketTop").GetComponent<Renderer>().material = oldHoverMatRocket;
-//            GameObject.Find("Satelite_plate").GetComponent<Renderer>().material = oldHoverMatMoss;
+            //            GameObject.Find("Satelite_plate").GetComponent<Renderer>().material = oldHoverMatMoss;
             //GameObject.Find("Solar_panel_panel").GetComponent<Renderer>().material = oldHoverMatSolarPanel;
             foreach (GameObject satellite in GameObject.FindGameObjectsWithTag("satellite"))
             {
@@ -244,6 +271,23 @@ public class RawInteraction2300 : MonoBehaviour
                     satellite.GetComponent<Renderer>().material = oldHoverMatSatellite;
                 }
             }
+
+            foreach (GameObject livingpod in GameObject.FindGameObjectsWithTag("LivingPod"))
+            {
+                if (livingpod.name == "C_Out_Wall_3")
+                {
+                    livingpod.GetComponent<Renderer>().material = oldHoverMatLivingPod;
+                }
+            }
+            
+            foreach (GameObject moss in GameObject.FindGameObjectsWithTag("Moss"))
+            {
+                if (moss.name == "MossPileBig")
+                {
+                    moss.GetComponent<Renderer>().material = oldHoverMatMoss;
+                }
+            }
+
 
             _scene2.GetComponentInChildren<Image>().color = Color.clear;
             _scene1.GetComponentInChildren<Image>().color = Color.clear;
@@ -298,20 +342,20 @@ public class RawInteraction2300 : MonoBehaviour
             _satelliteConductor.NextStep();
         } else if (selectedTag == "LivingPod")
         {
-            Debug.Log("DelayedResetAndNextStep: SolarPanel");
+            Debug.Log("DelayedResetAndNextStep: LivingPod");
             yield return 0;
             _livingPodConductor.Reset();
             yield return 0;
             _livingPodConductor.NextStep();
         }
-//        else if (selectedTag == "Moss")
-//        {
-//            Debug.Log("DelayedResetAndNextStep: Gas Tank");
-//            yield return 0;
-//            _mossConductor.Reset();
-//            yield return 0;
-//            _mossConductor.NextStep();
-//        }
+        else if (selectedTag == "Moss")
+        {
+            Debug.Log("DelayedResetAndNextStep: Gas Tank");
+            yield return 0;
+            _mossConductor.Reset();
+            yield return 0;
+            _mossConductor.NextStep();
+        }
     }
 
     public void OnSelected(Transform t)
@@ -397,27 +441,27 @@ public class RawInteraction2300 : MonoBehaviour
                 _prevStepwise = _stepwiseLivingPod;
                 _livingPodArrow.SetActive(false);
             }
-//            else if (selectedTag == "Moss")
-//            {
-//                panelActive = true;
-//                if (!_mossPanel.activeInHierarchy)
-//                {
-//                    Debug.Log("SolarPanel not active");
-//                    DeactivatePanel(selectedTag);
-//                    _mossPanel.SetActive(true);
-//                    StartCoroutine(DelayedResetAndNextStep());
-//                }
-//                else
-//                {
-//                    Debug.Log("habitatPod panel already active: next step");
-//                    _mossConductor.NextStep();
-//                }
-//
-//                _prevPanel = _mossPanel;
-//                _prevStepwise = _stepwiseMoss;
-//                //Deactivate habitatPod arrow 
-//                //_solarPanelArrow.SetActive(false);
-//            }
+            else if (selectedTag == "Moss")
+            {
+                panelActive = true;
+                if (!_mossPanel.activeInHierarchy)
+                {
+                    Debug.Log("Moss not active");
+                    DeactivatePanel(selectedTag);
+                    _mossPanel.SetActive(true);
+                    StartCoroutine(DelayedResetAndNextStep());
+                }
+                else
+                {
+                    Debug.Log("Moss panel already active: next step");
+                    _mossConductor.NextStep();
+                }
+
+                _prevPanel = _mossPanel;
+                _prevStepwise = _stepwiseMoss;
+                _mossIndicatorArrow.SetActive(false);
+                  
+            }
             else if (selectedTag == "Scene1")
             {
                 
