@@ -732,10 +732,10 @@ public class RawInteraction : MonoBehaviour
             {
                 
                 Debug.Log("Active scene: " + SceneManager.GetActiveScene().name);
-                if (SceneManager.GetActiveScene().name != "Mars at 2100")
+                if (SceneManager.GetActiveScene().name != "Marsat2100")
                 {
                     Debug.Log("Load scene 1!");
-                    SceneManager.LoadScene("Mars at 2100");
+                    SceneManager.LoadScene("Marsat2100");
                 }
 
             }
@@ -743,10 +743,10 @@ public class RawInteraction : MonoBehaviour
             {
                 t.gameObject.GetComponentInChildren<Image>().sprite = Resources.Load("scene-b-hilite") as Sprite;
                 Debug.Log("Active scene: " + SceneManager.GetActiveScene().name);
-                if (SceneManager.GetActiveScene().name != "Mars at 2300")
+                if (SceneManager.GetActiveScene().name != "Marsat2300")
                 {
                     Debug.Log("Load scene 2!");
-                    SceneManager.LoadScene("Mars at 2300");
+                    SceneManager.LoadScene("Marsat2300");
                 }
                 //TODO: Add warning to show player is pressing on current scene!
             } else if (selectedTag == "Credits")

@@ -215,7 +215,7 @@ public class MainMenuRawInteraction : MonoBehaviour
             if (SceneManager.GetActiveScene().name != "DemoMarsScene")
             {
                 Debug.Log("Load scene 1!");
-                SceneManager.LoadScene("DemoMarsScene");
+                SceneManager.LoadScene("Marsat2100");
             }
 
         }
@@ -225,7 +225,7 @@ public class MainMenuRawInteraction : MonoBehaviour
             if (SceneManager.GetActiveScene().name != "Scene2")
             {
                 Debug.Log("Load scene 2!");
-                SceneManager.LoadScene("Scene2");
+                SceneManager.LoadScene("Marsat2300");
             }
 
             //TODO: Add warning to show player is pressing on current scene!
