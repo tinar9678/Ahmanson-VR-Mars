@@ -32,7 +32,7 @@ public class RawInteraction2300 : MonoBehaviour
     protected Material oldHoverMatRocket;
     protected Material oldHoverMatSatellite;
     protected Material oldHoverMatMoss;
-    protected Material oldHoverMatLivingPod;
+    public Material oldHoverMatLivingPod;
 
     public Material outlineMaterial;
     public Material backIdle;
@@ -71,7 +71,8 @@ public class RawInteraction2300 : MonoBehaviour
     public GameObject rightHand;
     //private bool triggerPressed;
     bool bDownRight;
-    
+    bool _livingPodNotHovered;
+
     private GameObject _prevPanel;
     private GameObject _prevStepwise;
     private string _prevTag;
@@ -113,15 +114,7 @@ public class RawInteraction2300 : MonoBehaviour
         oldHoverMatRocket = GameObject.Find("RocketTop").GetComponent<Renderer>().material;
         oldHoverMatSatellite = GameObject.Find("C_Misk_Aerial").GetComponent<Renderer>().material;
         oldHoverMatMoss = GameObject.Find("MossPileBig").GetComponent<Renderer>().material;
-        oldHoverMatLivingPod = Resources.Load("C2_Outside_2", typeof(Material)) as Material;
         //oldHoverMatLivingPod = GameObject.Find("C_Out_Wall_3").GetComponent<Renderer>().material;
-        foreach (GameObject livingpod in GameObject.FindGameObjectsWithTag("LivingPod"))
-        {
-            if (livingpod.name == "C_Out_Wall_3")
-            {
-                livingpod.GetComponent<Renderer>().material = oldHoverMatLivingPod;
-            }
-        }
 
         sceneA_original = Resources.Load<Sprite>("scene-a");
         sceneB_original = Resources.Load<Sprite>("scene-b");
@@ -135,27 +128,7 @@ public class RawInteraction2300 : MonoBehaviour
         panelActive = false;
         hovering = false;
         _mainMenuActive = false;
-
-    }
-
-    private IEnumerator AutoStart()
-    {
-        yield return new WaitForSeconds(.5f);
-        if (selectedTag == "agroPod")
-        {
-            if (_rocketConductor != null)
-            {
-                _rocketConductor.NextStep();
-            }
-        }
-
-        /*else if(selectedTag == "controlCenter")
-        {
-            if (_controlCenterConductor != null)
-            {
-                _controlCenterConductor.NextStep();
-            }
-        }*/
+        _livingPodNotHovered = false; 
     }
 
     public void Update()
@@ -208,6 +181,7 @@ public class RawInteraction2300 : MonoBehaviour
                         livingpod.GetComponent<Renderer>().material = outlineMaterial;
                     }
                 }
+                _livingPodNotHovered = true;
             }
 
             if (t.gameObject.tag == "Moss")
@@ -271,12 +245,15 @@ public class RawInteraction2300 : MonoBehaviour
                     satellite.GetComponent<Renderer>().material = oldHoverMatSatellite;
                 }
             }
-
-            foreach (GameObject livingpod in GameObject.FindGameObjectsWithTag("LivingPod"))
+            
+            if(_livingPodNotHovered)
             {
-                if (livingpod.name == "C_Out_Wall_3")
+                foreach (GameObject livingpod in GameObject.FindGameObjectsWithTag("LivingPod"))
                 {
-                    livingpod.GetComponent<Renderer>().material = oldHoverMatLivingPod;
+                    if (livingpod.name == "C_Out_Wall_3")
+                    {
+                        livingpod.GetComponent<Renderer>().material = oldHoverMatLivingPod;
+                    }
                 }
             }
             
@@ -308,7 +285,12 @@ public class RawInteraction2300 : MonoBehaviour
     private void HandleScorePrepared(Score score)
     {
         Debug.Log("score prepared:" + score);
-        //StartCoroutine(AutoStart());
+        int n = score.sequences.Length;
+        for (int i = 0; i < n; i++)
+        {
+            score.sequences[i].repeat = false;
+        }
+
     }
 
     private void DeactivatePanel(string selectedTag)

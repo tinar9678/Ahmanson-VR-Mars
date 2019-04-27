@@ -92,19 +92,14 @@ public class MainMenuRawInteraction : MonoBehaviour
         _creditsConductor = stepwiseCredits.GetComponent<Conductor>();
         _creditsConductor.OnScorePrepared += HandleScorePrepared;
 
+        StartCoroutine(AutoStart());
+
     }
 
     private IEnumerator AutoStart()
     {
         yield return new WaitForSeconds(.5f);
-        if (selectedTag == "agroPod")
-        {
-            if (_agroPodConductor != null)
-            {
-                _agroPodConductor.NextStep();
-            }
-        }
-
+        _creditsConductor.NextStep();
     }
 
     public void Update()
@@ -121,7 +116,12 @@ public class MainMenuRawInteraction : MonoBehaviour
     private void HandleScorePrepared(Score score)
     {
         Debug.Log("score prepared:" + score);
-        //StartCoroutine(AutoStart());
+        int n = score.sequences.Length;
+        for (int i = 0; i < n; i++)
+        {
+            score.sequences[i].repeat = false;
+        }
+
     }
 
     public void OnHoverEnter(Transform t)

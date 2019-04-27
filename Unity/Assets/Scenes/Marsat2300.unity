@@ -604,17 +604,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199131358}
-  m_LocalRotation: {x: -0, y: -0.9735444, z: -0, w: 0.22849785}
-  m_LocalPosition: {x: 0, y: 0, z: 243}
-  m_LocalScale: {x: 0.016966248, y: 0.016966246, z: 0.016966248}
+  m_LocalRotation: {x: -0, y: 0.19708474, z: -0, w: 0.9803865}
+  m_LocalPosition: {x: 0, y: 0, z: 192.8}
+  m_LocalScale: {x: 0.024809744, y: 0.02480974, z: 0.024809744}
   m_Children:
   - {fileID: 1258689868}
   m_Father: {fileID: 0}
   m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: -153.58301, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 22.733002, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -21, y: 25.5}
+  m_AnchoredPosition: {x: -42, y: 19.5}
   m_SizeDelta: {x: 1500, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &199131364
@@ -2853,7 +2853,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875633214}
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: 135.6}
+  m_LocalPosition: {x: 0, y: 0, z: 129.6}
   m_LocalScale: {x: 0.016966254, y: 0.016966246, z: 0.016966254}
   m_Children:
   - {fileID: 329341420}
@@ -2862,7 +2862,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -116.4, y: 7.4}
+  m_AnchoredPosition: {x: -110.4, y: 7.4}
   m_SizeDelta: {x: 1303.8, y: 795.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &898557453 stripped
@@ -3118,7 +3118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e959af80fe5441f28400a071852079c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sheetsURL: https://docs.google.com/spreadsheets/d/1RxAxyREKfKJ0nIANuHqUyWDQgVCGdzKAWs93RPRmyr8/edit#gid=0
+  sheetsURL: https://docs.google.com/spreadsheets/d/1S7i0smowOfKXakD5HMvM5nbCXd9gp9ZM9YqYKJ2-r6c/edit#gid=0
   outputXML: 
 --- !u!4 &973810644
 Transform:
@@ -3363,7 +3363,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076696802}
   m_LocalRotation: {x: -0, y: -0.020499943, z: -0, w: 0.9997899}
-  m_LocalPosition: {x: 0, y: 0, z: 23.3}
+  m_LocalPosition: {x: 0, y: 0, z: -25}
   m_LocalScale: {x: 1.4428649, y: 1.4428648, z: 1.4428649}
   m_Children: []
   m_Father: {fileID: 1838284102}
@@ -3371,7 +3371,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -2.3490002, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 582.4, y: 472}
+  m_AnchoredPosition: {x: -590, y: 472}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &1076696804
@@ -3471,7 +3471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e959af80fe5441f28400a071852079c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sheetsURL: https://docs.google.com/spreadsheets/d/1RxAxyREKfKJ0nIANuHqUyWDQgVCGdzKAWs93RPRmyr8/edit#gid=0
+  sheetsURL: https://docs.google.com/spreadsheets/d/135DNzNAAbuCUGJ0bkkv1jNWmGbXqpf8-Si32OJJiIGA/edit#gid=0
   outputXML: 
 --- !u!114 &1173466040
 MonoBehaviour:
@@ -3916,12 +3916,12 @@ PrefabInstance:
     - target: {fileID: 9129864486466619233, guid: 23ff0e309a99fca43b2f61883aa1a0af,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.052814484
+      value: 0.058652878
       objectReference: {fileID: 0}
     - target: {fileID: 9129864486466619233, guid: 23ff0e309a99fca43b2f61883aa1a0af,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.046009064
+      value: -0.051038742
       objectReference: {fileID: 0}
     - target: {fileID: 9129864486484175053, guid: 23ff0e309a99fca43b2f61883aa1a0af,
         type: 3}
@@ -3976,7 +3976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 561, y: 474}
+  m_AnchoredPosition: {x: -641, y: 522.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1258689869
@@ -5046,17 +5046,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476663424}
-  m_LocalRotation: {x: -0, y: -0.98847294, z: -0, w: -0.1513982}
-  m_LocalPosition: {x: 0, y: 0, z: 68.1}
-  m_LocalScale: {x: 0.016966254, y: 0.016966246, z: 0.016966254}
+  m_LocalRotation: {x: -0, y: -0.9364523, z: -0, w: -0.3507949}
+  m_LocalPosition: {x: 0, y: 0, z: 112.8}
+  m_LocalScale: {x: 0.026105974, y: 0.026105963, z: 0.026105974}
   m_Children:
   - {fileID: 2107339029}
   m_Father: {fileID: 0}
   m_RootOrder: 18
-  m_LocalEulerAnglesHint: {x: 0, y: -197.41599, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -221.07199, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 3.7, y: 28.2}
+  m_AnchoredPosition: {x: -25.9, y: 28.2}
   m_SizeDelta: {x: 1303.8, y: 795.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1489141929
@@ -5200,7 +5200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e959af80fe5441f28400a071852079c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sheetsURL: https://docs.google.com/spreadsheets/d/1RxAxyREKfKJ0nIANuHqUyWDQgVCGdzKAWs93RPRmyr8/edit#gid=0
+  sheetsURL: https://docs.google.com/spreadsheets/d/1FB_ZtDyaCKd0QsxWMcp3pHiNI_f-y2jy_a1ChQNCFHc/edit#gid=0
   outputXML: 
 --- !u!114 &1493945577
 MonoBehaviour:
@@ -6329,8 +6329,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838284094}
   m_LocalRotation: {x: -0, y: -0.5887082, z: -0, w: -0.8083456}
-  m_LocalPosition: {x: 0, y: 0, z: 155.7}
-  m_LocalScale: {x: 0.016966254, y: 0.016966246, z: 0.016966254}
+  m_LocalPosition: {x: 0, y: 0, z: 140.2}
+  m_LocalScale: {x: 0.026083918, y: 0.026083907, z: 0.026083918}
   m_Children:
   - {fileID: 1076696803}
   m_Father: {fileID: 0}
@@ -6338,7 +6338,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -287.869, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 55.9, y: 28.2}
+  m_AnchoredPosition: {x: 7.7, y: 24.1}
   m_SizeDelta: {x: 1303.8, y: 795.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1878601810
@@ -6385,7 +6385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e959af80fe5441f28400a071852079c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sheetsURL: https://docs.google.com/spreadsheets/d/1RxAxyREKfKJ0nIANuHqUyWDQgVCGdzKAWs93RPRmyr8/edit#gid=0
+  sheetsURL: https://docs.google.com/spreadsheets/d/1DDIZRtrzge2rc_zoHx_ePYHGSPAtz9Ej1HoSoN8JmE8/edit#gid=0
   outputXML: 
 --- !u!4 &1878601813
 Transform:
@@ -7419,7 +7419,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107339028}
   m_LocalRotation: {x: -0, y: -0.020499943, z: -0, w: 0.9997899}
-  m_LocalPosition: {x: 0, y: 0, z: 23.3}
+  m_LocalPosition: {x: 0, y: 0, z: -24}
   m_LocalScale: {x: 1.4428649, y: 1.4428648, z: 1.4428649}
   m_Children: []
   m_Father: {fileID: 1476663432}
@@ -7427,7 +7427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -2.3490002, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 582.4, y: 472}
+  m_AnchoredPosition: {x: -572, y: 472}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &2107339030
@@ -7800,6 +7800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yellowMat: {fileID: 2100000, guid: 5d1e07c8dcc9f0740bde7899dcf7a37d, type: 2}
+  oldHoverMatLivingPod: {fileID: 2100000, guid: 89328b15ff2e2384182582c74e389af1,
+    type: 2}
   outlineMaterial: {fileID: 2100000, guid: f7a2db33893f98b4a81bcd2acab3399c, type: 2}
   backIdle: {fileID: 2100000, guid: cee025dc9b4a073479a2558d39b6282d, type: 2}
   backACtive: {fileID: 2100000, guid: b1c17a17605695742a22909fd1245eb3, type: 2}
