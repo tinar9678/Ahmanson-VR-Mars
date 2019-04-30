@@ -88,9 +88,10 @@ GameObject:
   - component: {fileID: 4272126576202306}
   - component: {fileID: 33804085798104166}
   - component: {fileID: 23976692175087888}
+  - component: {fileID: 4807147274361219913}
   m_Layer: 0
   m_Name: MossyRock2
-  m_TagString: Untagged
+  m_TagString: Moss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +105,7 @@ Transform:
   m_GameObject: {fileID: 1999668808596716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 174.69493, y: 23.048, z: 83.117455}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5.7515, y: 5.7515, z: 5.7515}
   m_Children:
   - {fileID: 4208448400753758}
   m_Father: {fileID: 0}
@@ -155,3 +156,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &4807147274361219913
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999668808596716}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2740415, y: 0.8625745, z: 0.8278321}
+  m_Center: {x: -0.02977526, y: 0.36275604, z: 0.007968902}

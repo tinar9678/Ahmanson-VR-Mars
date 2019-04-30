@@ -4,26 +4,26 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - astronaut
+  - Undefined
+  - InstructionMenu
   - agroPod
-  - agroPodPanel
+  - solarPanel
+  - rocket
   - controlCenter
-  - exitButton
+  - Rover
+  - GasTank
+  - satellite
+  - HabitatPod
   - MainMenu
   - Scene1
-  - Scene2
-  - rocket
-  - satellite
-  - solarPanel
-  - GasTank
-  - Rover
   - Credits
-  - HabitatPod
-  - InstructionMenu
-  - Elevator2
-  - MossColor
-  - NewSatelliteColor
+  - exitButton
+  - Scene2
+  - astronaut
   - LivingPod
+  - Elevator2
+  - CreditsPanel
+  - Moss
   layers:
   - Default
   - TransparentFX

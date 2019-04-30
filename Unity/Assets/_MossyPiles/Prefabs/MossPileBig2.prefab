@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 33018133841703826}
   - component: {fileID: 23473094182436312}
   - component: {fileID: 64184213196783720}
+  - component: {fileID: 1995435003985467448}
   m_Layer: 0
   m_Name: MossPileBig2
-  m_TagString: Untagged
+  m_TagString: Moss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608345568294592}
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 149.80243, y: 26.051, z: 67.51049}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.0793393, y: 2.0793393, z: 2.0793393}
   m_Children:
   - {fileID: 4101162822263836}
   m_Father: {fileID: 0}
@@ -93,6 +94,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300004, guid: afdc79de826286941995587494a2a321, type: 3}
+--- !u!65 &1995435003985467448
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608345568294592}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0665214, y: 0.2196059, z: 2.260286}
+  m_Center: {x: 0.000007748973, y: 0.12704152, z: 0.000007633181}
 --- !u!1 &1635018966534378
 GameObject:
   m_ObjectHideFlags: 0
