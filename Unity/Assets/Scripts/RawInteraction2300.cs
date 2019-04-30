@@ -94,10 +94,9 @@ public class RawInteraction2300 : MonoBehaviour
     {
         _stepwiseRocket.SetActive(true);
         
-        _rocketConductor = _stepwiseRocket.GetComponent<Conductor>();
-        _rocketConductor.OnScorePrepared += HandleScorePrepared;
-        //_controlCenterConductor = stepwiseControlCenter.GetComponent<Conductor>();
-        // _controlCenterConductor.OnScorePrepared += HandleScorePrepared;
+        _livingPodConductor = _stepwiseLivingPod.GetComponent<Conductor>();
+        _livingPodConductor.OnScorePrepared += HandleScorePrepared;
+
         _rocketConductor = _stepwiseRocket.GetComponent<Conductor>();
         _rocketConductor.OnScorePrepared += HandleScorePrepared;
 

@@ -8,16 +8,10 @@ public class AstronautWalk : MonoBehaviour {
 
     public Transform[] points;
     private int destPoint = 0;
-    private NavMeshAgent agent;
+    [SerializeField] float _moveSpeed = 2f;
 
 
     void Start () {
-        agent = GetComponent<NavMeshAgent>();
-
-        // Disabling auto-braking allows for continuous movement
-        // between points (ie, the agent doesn't slow down as it
-        // approaches a destination point).
-        agent.autoBraking = false;
 
         GotoNextPoint();
     }
@@ -29,18 +23,30 @@ public class AstronautWalk : MonoBehaviour {
             return;
 
         // Set the agent to go to the currently selected destination.
-        agent.destination = points[destPoint].position;
+        transform.LookAt(points[destPoint].position);
+        Vector3 newTransform = transform.position + transform.forward * _moveSpeed;
+        float fraction =+ Time.deltaTime * _moveSpeed;
+        transform.position = Vector3.Lerp(transform.position, newTransform, fraction);
+        //agent.destination = points[destPoint].position;
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
         // Choose the next point in the array as the destination,
         // cycling to the start if necessary.
-        destPoint = (destPoint + 1) % points.Length;
+        if(collision.collider.tag == "WayPoint")
+        {
+            destPoint = (destPoint + 1) % points.Length;
+            Debug.Log("Waypoint detected");
+        }
     }
 
 
     void Update () {
         // Choose the next destination point when the agent gets
         // close to the current one.
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        //if (!agent.pathPending && agent.remainingDistance < 0.5f)
             GotoNextPoint();
     }
 }
