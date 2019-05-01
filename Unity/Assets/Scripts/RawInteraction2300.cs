@@ -47,12 +47,17 @@ public class RawInteraction2300 : MonoBehaviour
     public GameObject _stepwiseMoss;
     public GameObject _stepwiseSatellite;
     public GameObject _stepwiseLivingPod;
+    public GameObject stepwiseInstructionMenu;
 
     public GameObject _mossPanel;
     public GameObject _livingPodPanel;
     public GameObject _rocketPanel;
     public GameObject satellitePanel;
 
+    [SerializeField] private GameObject _instructionMenuCanvas;
+    [SerializeField] private bool _instructionMenuActive;
+    [SerializeField] private float timeLeft;
+    [SerializeField] private GameObject bButtonOverlay;
 
     [SerializeField] private Canvas _mainMenuCanvas;
     [SerializeField] private bool _mainMenuActive;
@@ -66,6 +71,8 @@ public class RawInteraction2300 : MonoBehaviour
     private Conductor _satelliteConductor;
     private Conductor _mossConductor;
     private Conductor _rocketConductor;
+    private Conductor _instructionMenuConductor;
+
     private bool panelActive;
 
     public GameObject rightHand;
@@ -106,6 +113,8 @@ public class RawInteraction2300 : MonoBehaviour
         _mossConductor = _stepwiseMoss.GetComponent<Conductor>();
         _mossConductor.OnScorePrepared += HandleScorePrepared;
 
+        _instructionMenuConductor = stepwiseInstructionMenu.GetComponent<Conductor>();
+        _instructionMenuConductor.OnScorePrepared += HandleScorePrepared;
 
         _prevTag = "";
 
@@ -126,18 +135,50 @@ public class RawInteraction2300 : MonoBehaviour
         bDownRight = OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
         panelActive = false;
         hovering = false;
+        timeLeft = 6f;
+
         _mainMenuActive = false;
+        _instructionMenuActive = false;
         _livingPodNotHovered = false; 
+    }
+
+    private IEnumerator AutoStart()
+    {
+        yield return new WaitForSeconds(.5f);
+        _instructionMenuConductor.NextStep();
     }
 
     public void Update()
     {
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0)
+        {
+            bButtonOverlay.SetActive(false);
+        }
 
-        if(OVRInput.GetDown(OVRInput.Button.One))
+        if (OVRInput.GetDown(OVRInput.Button.One))
         {
             Debug.Log("A pressed!!");
+
+            if (bButtonOverlay.activeInHierarchy)
+            {
+                bButtonOverlay.SetActive(false);
+            }
             _mainMenuCanvas.gameObject.SetActive(!_mainMenuActive);
             _mainMenuActive = !_mainMenuActive;
+        }
+
+        if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+
+            Debug.Log("Interaction menu raw interaction B button pressed!!");
+            if (bButtonOverlay.activeInHierarchy)
+            {
+                bButtonOverlay.SetActive(false);
+            }
+            _instructionMenuCanvas.SetActive(!_instructionMenuActive);
+            _instructionMenuActive = !_instructionMenuActive;
+            if (_instructionMenuActive) StartCoroutine(AutoStart());
         }
     }
 
@@ -337,6 +378,14 @@ public class RawInteraction2300 : MonoBehaviour
             yield return 0;
             _mossConductor.NextStep();
         }
+        else if (selectedTag == "InstructionMenu")
+        {
+            Debug.Log("DelayedResetAndNextStep: InstructionMenu");
+            yield return 0;
+            _instructionMenuConductor.Reset();
+            yield return 0;
+            _instructionMenuConductor.NextStep();
+        }
     }
 
     public void OnSelected(Transform t)
@@ -442,6 +491,22 @@ public class RawInteraction2300 : MonoBehaviour
                 _prevStepwise = _stepwiseMoss;
                 _mossIndicatorArrow.SetActive(false);
                   
+            }
+            else if (selectedTag == "InstructionMenu")
+            {
+                panelActive = true;
+                if (!_instructionMenuCanvas.activeInHierarchy)
+                {
+                    Debug.Log("Instruction menu not active");
+                    DeactivatePanel(selectedTag);
+                    _instructionMenuCanvas.SetActive(true);
+                    StartCoroutine(DelayedResetAndNextStep());
+                }
+                else
+                {
+                    Debug.Log("Instruction Menu panel already active: next step");
+                    _instructionMenuConductor.NextStep();
+                }    
             }
             else if (selectedTag == "Scene1")
             {
