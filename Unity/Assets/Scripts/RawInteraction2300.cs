@@ -119,7 +119,7 @@ public class RawInteraction2300 : MonoBehaviour
         _prevTag = "";
 
         //oldHoverMatControlCenter = GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material;
-        oldHoverMatRocket = GameObject.Find("RocketTop").GetComponent<Renderer>().material;
+        oldHoverMatRocket = GameObject.Find("C2_El_Wall").GetComponent<Renderer>().material;
         oldHoverMatSatellite = GameObject.Find("C_Misk_Aerial").GetComponent<Renderer>().material;
         oldHoverMatMoss = GameObject.Find("MossPileBig").GetComponent<Renderer>().material;
         //oldHoverMatLivingPod = GameObject.Find("C_Out_Wall_3").GetComponent<Renderer>().material;
@@ -198,7 +198,13 @@ public class RawInteraction2300 : MonoBehaviour
 
             if (t.gameObject.tag == "rocket")
             {
-                GameObject.Find("RocketTop").GetComponent<Renderer>().material = outlineMaterial;       
+                foreach (GameObject rocketship in GameObject.FindGameObjectsWithTag("rocket"))
+                {
+                    if (rocketship.name == "C2_El_Wall" || rocketship.name == "C_El_Plate")
+                    {
+                        rocketship.GetComponent<Renderer>().material = outlineMaterial;
+                    }
+                }
             }
             
             if (t.gameObject.tag == "satellite")
@@ -274,8 +280,16 @@ public class RawInteraction2300 : MonoBehaviour
         }
         else
         {
-
-            GameObject.Find("RocketTop").GetComponent<Renderer>().material = oldHoverMatRocket;
+            if (t.gameObject.tag == "rocket")
+            {
+                foreach (GameObject rocketship in GameObject.FindGameObjectsWithTag("rocket"))
+                {
+                    if (rocketship.name == "C2_El_Wall" || rocketship.name == "C_El_Plate")
+                    {
+                        rocketship.GetComponent<Renderer>().material = oldHoverMatRocket;
+                    }
+                }
+            }
             //            GameObject.Find("Satelite_plate").GetComponent<Renderer>().material = oldHoverMatMoss;
             //GameObject.Find("Solar_panel_panel").GetComponent<Renderer>().material = oldHoverMatSolarPanel;
             foreach (GameObject satellite in GameObject.FindGameObjectsWithTag("satellite"))
