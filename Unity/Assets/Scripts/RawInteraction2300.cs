@@ -47,12 +47,17 @@ public class RawInteraction2300 : MonoBehaviour
     public GameObject _stepwiseMoss;
     public GameObject _stepwiseSatellite;
     public GameObject _stepwiseLivingPod;
+    public GameObject stepwiseInstructionMenu;
 
     public GameObject _mossPanel;
     public GameObject _livingPodPanel;
     public GameObject _rocketPanel;
     public GameObject satellitePanel;
 
+    [SerializeField] private GameObject _instructionMenuCanvas;
+    [SerializeField] private bool _instructionMenuActive;
+    [SerializeField] private float timeLeft;
+    [SerializeField] private GameObject bButtonOverlay;
 
     [SerializeField] private Canvas _mainMenuCanvas;
     [SerializeField] private bool _mainMenuActive;
@@ -66,6 +71,8 @@ public class RawInteraction2300 : MonoBehaviour
     private Conductor _satelliteConductor;
     private Conductor _mossConductor;
     private Conductor _rocketConductor;
+    private Conductor _instructionMenuConductor;
+
     private bool panelActive;
 
     public GameObject rightHand;
@@ -94,10 +101,9 @@ public class RawInteraction2300 : MonoBehaviour
     {
         _stepwiseRocket.SetActive(true);
         
-        _rocketConductor = _stepwiseRocket.GetComponent<Conductor>();
-        _rocketConductor.OnScorePrepared += HandleScorePrepared;
-        //_controlCenterConductor = stepwiseControlCenter.GetComponent<Conductor>();
-        // _controlCenterConductor.OnScorePrepared += HandleScorePrepared;
+        _livingPodConductor = _stepwiseLivingPod.GetComponent<Conductor>();
+        _livingPodConductor.OnScorePrepared += HandleScorePrepared;
+
         _rocketConductor = _stepwiseRocket.GetComponent<Conductor>();
         _rocketConductor.OnScorePrepared += HandleScorePrepared;
 
@@ -107,11 +113,13 @@ public class RawInteraction2300 : MonoBehaviour
         _mossConductor = _stepwiseMoss.GetComponent<Conductor>();
         _mossConductor.OnScorePrepared += HandleScorePrepared;
 
+        _instructionMenuConductor = stepwiseInstructionMenu.GetComponent<Conductor>();
+        _instructionMenuConductor.OnScorePrepared += HandleScorePrepared;
 
         _prevTag = "";
 
         //oldHoverMatControlCenter = GameObject.Find("Control_Center_Mat").GetComponent<Renderer>().material;
-        oldHoverMatRocket = GameObject.Find("RocketTop").GetComponent<Renderer>().material;
+        oldHoverMatRocket = GameObject.Find("C2_El_Wall").GetComponent<Renderer>().material;
         oldHoverMatSatellite = GameObject.Find("C_Misk_Aerial").GetComponent<Renderer>().material;
         oldHoverMatMoss = GameObject.Find("MossPileBig").GetComponent<Renderer>().material;
         //oldHoverMatLivingPod = GameObject.Find("C_Out_Wall_3").GetComponent<Renderer>().material;
@@ -127,18 +135,50 @@ public class RawInteraction2300 : MonoBehaviour
         bDownRight = OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
         panelActive = false;
         hovering = false;
+        timeLeft = 6f;
+
         _mainMenuActive = false;
+        _instructionMenuActive = false;
         _livingPodNotHovered = false; 
+    }
+
+    private IEnumerator AutoStart()
+    {
+        yield return new WaitForSeconds(.5f);
+        _instructionMenuConductor.NextStep();
     }
 
     public void Update()
     {
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0)
+        {
+            bButtonOverlay.SetActive(false);
+        }
 
-        if(OVRInput.GetDown(OVRInput.Button.One))
+        if (OVRInput.GetDown(OVRInput.Button.One))
         {
             Debug.Log("A pressed!!");
+
+            if (bButtonOverlay.activeInHierarchy)
+            {
+                bButtonOverlay.SetActive(false);
+            }
             _mainMenuCanvas.gameObject.SetActive(!_mainMenuActive);
             _mainMenuActive = !_mainMenuActive;
+        }
+
+        if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+
+            Debug.Log("Interaction menu raw interaction B button pressed!!");
+            if (bButtonOverlay.activeInHierarchy)
+            {
+                bButtonOverlay.SetActive(false);
+            }
+            _instructionMenuCanvas.SetActive(!_instructionMenuActive);
+            _instructionMenuActive = !_instructionMenuActive;
+            if (_instructionMenuActive) StartCoroutine(AutoStart());
         }
     }
 
@@ -158,7 +198,13 @@ public class RawInteraction2300 : MonoBehaviour
 
             if (t.gameObject.tag == "rocket")
             {
-                GameObject.Find("RocketTop").GetComponent<Renderer>().material = outlineMaterial;       
+                foreach (GameObject rocketship in GameObject.FindGameObjectsWithTag("rocket"))
+                {
+                    if (rocketship.name == "C2_El_Wall" || rocketship.name == "C_El_Plate")
+                    {
+                        rocketship.GetComponent<Renderer>().material = outlineMaterial;
+                    }
+                }
             }
             
             if (t.gameObject.tag == "satellite")
@@ -234,8 +280,16 @@ public class RawInteraction2300 : MonoBehaviour
         }
         else
         {
-
-            GameObject.Find("RocketTop").GetComponent<Renderer>().material = oldHoverMatRocket;
+            if (t.gameObject.tag == "rocket")
+            {
+                foreach (GameObject rocketship in GameObject.FindGameObjectsWithTag("rocket"))
+                {
+                    if (rocketship.name == "C2_El_Wall" || rocketship.name == "C_El_Plate")
+                    {
+                        rocketship.GetComponent<Renderer>().material = oldHoverMatRocket;
+                    }
+                }
+            }
             //            GameObject.Find("Satelite_plate").GetComponent<Renderer>().material = oldHoverMatMoss;
             //GameObject.Find("Solar_panel_panel").GetComponent<Renderer>().material = oldHoverMatSolarPanel;
             foreach (GameObject satellite in GameObject.FindGameObjectsWithTag("satellite"))
@@ -337,6 +391,14 @@ public class RawInteraction2300 : MonoBehaviour
             _mossConductor.Reset();
             yield return 0;
             _mossConductor.NextStep();
+        }
+        else if (selectedTag == "InstructionMenu")
+        {
+            Debug.Log("DelayedResetAndNextStep: InstructionMenu");
+            yield return 0;
+            _instructionMenuConductor.Reset();
+            yield return 0;
+            _instructionMenuConductor.NextStep();
         }
     }
 
@@ -443,6 +505,22 @@ public class RawInteraction2300 : MonoBehaviour
                 _prevStepwise = _stepwiseMoss;
                 _mossIndicatorArrow.SetActive(false);
                   
+            }
+            else if (selectedTag == "InstructionMenu")
+            {
+                panelActive = true;
+                if (!_instructionMenuCanvas.activeInHierarchy)
+                {
+                    Debug.Log("Instruction menu not active");
+                    DeactivatePanel(selectedTag);
+                    _instructionMenuCanvas.SetActive(true);
+                    StartCoroutine(DelayedResetAndNextStep());
+                }
+                else
+                {
+                    Debug.Log("Instruction Menu panel already active: next step");
+                    _instructionMenuConductor.NextStep();
+                }    
             }
             else if (selectedTag == "Scene1")
             {
