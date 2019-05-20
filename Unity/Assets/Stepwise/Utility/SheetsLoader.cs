@@ -75,6 +75,7 @@ namespace Opertoon.Stepwise
             {
                 url = sheetId;
             }
+            Debug.Log(url);
             _script = new XmlDocument();
             _script.LoadXml("<stepwise><title>Untitled</title><description></description><primaryCredits></primaryCredits><secondaryCredits></secondaryCredits><version>1</version><sequence id=\"global\" repeat=\"+\"></sequence></stepwise>");
             StartCoroutine(GetJSONFromSheet(url, success));
